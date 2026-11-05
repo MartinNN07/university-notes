@@ -1,0 +1,85 @@
+\ProvidesPackage{../../common/preamble}
+
+% --- Language & Fonts ---
+% --- Language & Fonts ---
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{bulgarian}
+\setotherlanguage{english}
+\setmainfont{CMU Serif}
+
+% --- Math Packages ---
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+
+% --- Page Layout ---
+\usepackage[a4paper, margin=2.2cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    urlcolor=blue!70!black
+}
+
+% --- Graphics & Drawings ---
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\usepackage[hypcap=false]{caption}
+
+% Command for handwritten drawings: \drawing{filename.jpg}{Caption text}
+\newcommand{\drawing}[2]{
+    \begin{center}
+        \ifstrempty{#1}{
+            \fbox{\parbox[c][3cm][c]{0.7\textwidth}{\centering \textit{[Липсваща рисунка: #2]}}}
+        }{
+            \includegraphics[max width=0.75\textwidth, max height=6cm, keepaspectratio]{#1}
+        }
+        \captionof{figure}{#2}
+    \end{center}
+}
+
+% --- Colors & Beautiful Boxes ---
+\usepackage[most]{tcolorbox}
+
+\usepackage{xcolor}
+\usepackage{centernot}
+
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+
+% Lecture Environments
+\newtcbtheorem[number within=section]{theorem}{Теорема}{
+    enhanced, colback=blue!5!white, colframe=blue!60!black, fonttitle=\bfseries
+}{thm}
+
+\newtcbtheorem[number within=section]{lemma}{Лема}{
+    enhanced, colback=teal!5!white, colframe=teal!60!black, fonttitle=\bfseries
+}{lem}
+
+\newtcbtheorem[number within=section]{corollary}{Следствие}{
+    enhanced, colback=cyan!5!white, colframe=cyan!60!black, fonttitle=\bfseries
+}{cor}
+
+\newtcbtheorem[number within=section]{definition}{Определение}{
+    enhanced, colback=amber!5!white, colframe=orange!80!black, fonttitle=\bfseries
+}{def}
+
+% Proof environment styling
+\renewenvironment{proof}[1][Доказателство]{
+    \par\noindent\textbf{\textit{#1.}}\enspace
+}{
+    \hfill$\blacksquare$\par\medskip
+}
+
+% Exercise Environments
+\newtcolorbox{problembox}[1]{
+    enhanced, colback=gray!5!white, colframe=gray!70!black,
+    title=\textbf{#1}, fonttitle=\bfseries
+}
+
+\newenvironment{solution}{
+    \par\noindent\textbf{\textit{Решение:}}\par
+}{
+    \par\smallskip\hrule\medskip
+}
+\usepackage{microtype}         % Subtle micro-adjustments to font spacing
+\emergencystretch = 3em        % Gives LaTeX extra flexibility in spaces before spilling
+\hfuzz = 2pt                   % Silences minor warnings (under 2pt) that are invisible

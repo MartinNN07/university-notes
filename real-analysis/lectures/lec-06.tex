@@ -1,0 +1,398 @@
+\chapter{Непрекъснатост на функции}
+
+\section*{Лекция 06: 11 ноември 2026 г.}
+
+Непрекъснатостта на изображения е едно от най-важните понятия в математиката. Обърнете му дължимото внимание.
+
+\section{Непрекъсната функция}
+\begin{definition}{Непрекъсната функция}{neprekysnata-funktsiya}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$. Казваме, че $f$ е \textbf{непрекъсната в} $x_0 \in D$, ако за всяко $\varepsilon > 0$ съществува $\delta > 0$ такова, че ако $x \in D$ и $|x - x_0| < \delta$, то $|f(x) - f(x_0)| < \varepsilon$. Функцията $f$ се нарича \textbf{непрекъсната}, ако $f$ е непрекъсната във всяка точка от дефиниционната си област, т.е. $f$ е непрекъсната в $x_0$ за всяко $x_0 \in D$. Следният запис е формалната дефиниция:
+\[
+(\forall x_0 \in D)\ \forall \varepsilon > 0\ \exists \delta > 0\ \forall x \in D,\ |x - x_0| < \delta : |f(x) - f(x_0)| < \varepsilon
+\]
+\end{definition}
+
+Налице са следните две възможности:
+\begin{enumerate}
+    \item $x_0$ е точка на сгъстяване на $D$. Тогава:
+    \[
+    f \text{ е непрекъсната в } x_0 \iff \lim_{x \to x_0} f(x) = f(x_0)
+    \]
+    \item $x_0$ не е точка на сгъстяване на $D$. Това означава, че:
+    \begin{align*}
+    \neg (\forall U \text{ -- околност на } x_0 : (U \cap D) \setminus \{x_0\} \neq \emptyset) &\equiv \\
+    \equiv \exists U \text{ -- околност на } x_0 : (U \cap D) \setminus \{x_0\} &= \emptyset
+    \end{align*}
+    С други думи, за някакво положително $\delta > 0$ е изпълнено, че $(x_0 - \delta, x_0 + \delta) \cap D = \{x_0\}$. Такива точки се наричат \textbf{изолирани точки} на $D$. В този случай всяка функция $f$ е непрекъсната в $x_0$. Наистина, ако $\delta > 0$ е такова, че $(x_0 - \delta, x_0 + \delta) \cap D = \{x_0\}$, каквото и да е $x \in D$ с $|x - x_0| < \delta$, то $x = x_0$ и следователно:
+    \[
+    |f(x) - f(x_0)| = |f(x_0) - f(x_0)| = 0 < \varepsilon, \quad \text{за произволно } \varepsilon > 0.
+    \]
+\end{enumerate}
+
+Горната дефиниция за непрекъснатост е във формата на Коши. Еквивалентна дефиниция може да се изкаже и във формата на Хайне:
+\[
+(\forall x_0 \in D)\ \forall \{x_n\}_{n=1}^\infty \subset D,\ x_n \xrightarrow[n \to \infty]{} x_0 : f(x_n) \xrightarrow[n \to \infty]{} f(x_0).
+\]
+Еквивалентността на двете дефиниции следва от съответната еквивалентност за граници, когато $x_0$ е точка на сгъстяване на $D$, и от факта, че когато $x_0$ е изолирана точка на $D$, всяка редица $\{x_n\}_{n=1}^\infty \subset D$, $x_n \xrightarrow[n \to \infty]{} x_0$ може да съдържа най-много краен брой членове, различни от $x_0$.
+
+Да разгледаме свойствата на непрекъснатите функции, свързани с аритметичните действия.
+
+\begin{theorem}{Аритметични свойства}{aritmetichni-svoystva}
+Ако $f, g : D \to \mathbb{R}$, $D \subset \mathbb{R}$, $x_0 \in D$ и $f, g$ са непрекъснати в $x_0$, то:
+\begin{enumerate}
+    \item $f + g$ е непрекъсната в $x_0$.
+    \item $f \cdot g$ е непрекъсната в $x_0$.
+    \item Ако $g(x_0) \neq 0$, то $x_0$ принадлежи на дефиниционната област на $\frac{f}{g}$ и $\frac{f}{g}$ е непрекъсната в $x_0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Доказателството на това твърдение е директно следствие от съответното твърдение за граници, когато $x_0$ е точка на сгъстяване на $D$, и заключението е тривиално, когато $x_0$ е изолирана точка на $D$. Наистина,
+\begin{align*}
+\lim_{x \to x_0} (f + g)(x) &= f(x_0) + g(x_0) = (f + g)(x_0) \\
+\lim_{x \to x_0} (f \cdot g)(x) &= f(x_0) \cdot g(x_0) = (f \cdot g)(x_0) \\
+\lim_{x \to x_0} \left(\frac{f}{g}\right)(x) &= \frac{f(x_0)}{g(x_0)} = \left(\frac{f}{g}\right)(x_0)
+\end{align*}
+\end{proof}
+
+Обърнете внимание, че в следващото твърдение (за композиция на непрекъснати функции) изкуственото предположение в съответното твърдение за граници изчезва.
+
+\begin{theorem}{Непрекъснатост на композиция}{nepr-kompozitsiya}
+Ако $f : D \to D_1$ и $g : D_1 \to \mathbb{R}$ за $D, D_1 \subset \mathbb{R}$, при това $f$ е непрекъсната в $x_0 \in D$ и $g$ е непрекъсната в $y_0 = f(x_0) \in D_1$, то $g \circ f$ е непрекъсната в $x_0$.
+\end{theorem}
+
+\begin{proof}
+Избираме произволна $\{x_n\}_{n=1}^\infty \subset D$ такава, че $x_n \xrightarrow[n \to \infty]{} x_0$. Понеже $f$ е непрекъсната в $x_0$, от дефиницията на Хайне следва, че $f(x_n) \xrightarrow[n \to \infty]{} f(x_0)$. Полагаме $y_n = f(x_n)$ за всяко $n \in \mathbb{N}$. Тогава за редицата $\{y_n\}_{n=1}^\infty \subset D_1$ е изпълнено $y_n \xrightarrow[n \to \infty]{} y_0 = f(x_0)$. Тъй като $g$ е непрекъсната в $y_0$, от дефиницията във формата на Хайне получаваме $g(y_n) \xrightarrow[n \to \infty]{} g(y_0)$. Следователно:
+\[
+g(f(x_n)) \xrightarrow[n \to \infty]{} g(f(x_0)) \iff (g \circ f)(x_n) \xrightarrow[n \to \infty]{} (g \circ f)(x_0).
+\]
+\end{proof}
+
+\begin{corollary}{Композиция на непрекъснати функции}{kompozitsiya-funktsii}
+Композиция на непрекъснати функции е непрекъсната. Формално, ако $f : D \to D_1$ и $g : D_1 \to \mathbb{R}$ ($D, D_1 \subset \mathbb{R}$) са непрекъснати, то $g \circ f : D \to \mathbb{R}$ е непрекъсната.
+\end{corollary}
+
+\noindent\textbf{Пример 1.5.} Да се убедим, че голяма част от функциите, с които обикновено работим, са непрекъснати:
+\begin{enumerate}
+    \item Всяка константна функция $f(x) = c$ е непрекъсната.
+    \item Идентитетът $f(x) = x$ е непрекъсната функция.
+    \item Всеки полином е непрекъсната функция, дефинирана върху цялата реална права. Това получаваме директно от първите два примера и от това, че произведение и сума на непрекъснати функции са непрекъснати.
+    \item Всички рационални функции (тоест $R(x) = \frac{P(x)}{Q(x)}$, където $P$ и $Q$ са полиноми) са непрекъснати. Да отбележим, че естествената дефиниционна област на $R$ е множеството $\{x \in \mathbb{R} : Q(x) \neq 0\}$. Добре е да си дадете сметка, че например $f(x) = \frac{1}{x}$ е непрекъсната, защото нулата не принадлежи на дефиниционната ѝ област. Друг е въпросът, че ако додефинираме тази функция в нулата по какъвто и да е начин, нулата ще бъде точка на прекъсване.
+    \item Експонентата $f_a : \mathbb{Q} \to \mathbb{R}$, зададена с $f_a(x) = a^x$, където $a > 0$, е непрекъсната. Наистина, в края на миналата лекция доказахме, че $\lim_{x \to x_0} a^x = a^{x_0}$.
+    \item Синусът е непрекъсната функция, дефинирана върху цялата реална права.
+    
+    Първо ще докажем, че $\lim_{x \to 0} \sin x = 0$. Използваме неравенството $0 < \sin x \le x$ за $x \in \left(0, \frac{\pi}{2}\right)$, което изведохме при разглеждане на границата $\lim_{x \to 0} \frac{\sin x}{x} = 1$. Разширяваме го, като използваме нечетността на $\sin x$, и прилагаме лемата за двамата полицаи:
+    \[
+    0 < \sin x \le x \quad \forall x \in \left(0, \frac{\pi}{2}\right) \implies \underbrace{-|x|}_{\xrightarrow[x \to 0]{} 0} \le \sin x \le \underbrace{|x|}_{\xrightarrow[x \to 0]{} 0} \quad \forall x \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right).
+    \]
+    Сега можем да докажем, че $\lim_{x \to x_0} \sin x = \sin x_0$. Наистина,
+    \[
+    \lim_{x \to x_0} \sin x = \sin x_0 + \lim_{x \to x_0} (\sin x - \sin x_0) = \sin x_0 + \lim_{x \to x_0} 2 \sin \frac{x - x_0}{2} \cos \frac{x + x_0}{2} = \sin x_0.
+    \]
+    Използвахме, че произведение на две функции, едната от които клони към нула, а другата е ограничена, клони към нула.
+    \item Косинусът е непрекъсната функция, дефинирана върху цялата реална права. Наистина,
+    \[
+    \lim_{x \to x_0} \cos x = \lim_{x \to x_0} \sin\left(\frac{\pi}{2} - x\right) = \sin\left(\frac{\pi}{2} - x_0\right) = \cos x_0.
+    \]
+\end{enumerate}
+
+\section{Основни теореми за непрекъснати функции в компактен интервал}
+
+\subsection{Теорема на Болцано}
+
+\begin{theorem}{Теорема на Болцано}{bolzano}
+Нека $f : [a, b] \to \mathbb{R}$ е непрекъсната и $f(a)f(b) < 0$. Тогава съществува $x_0 \in (a, b)$ с $f(x_0) = 0$.
+\end{theorem}
+
+Ще изложим две доказателства, защото всяко от тях е поучително.
+
+\begin{proof}[Първо доказателство (чрез инфимум)]
+Без ограничение на общността (б.о.о.) нека $f(a) < 0$ и $f(b) > 0$. Разглеждаме множеството $A = \{x \in [a, b] : f(x) > 0\}$. Това множество е непразно, защото поне $b$ със сигурност е негов елемент. При това $A$ е ограничено. Следователно $A$ притежава инфимум. Полагаме $x_0 = \inf A$.
+
+\begin{align*}
+\left.
+\begin{aligned}
+&f \text{ е непрекъсната в } a \\
+&f(a) < 0
+\end{aligned}
+\right\}
+&\implies \exists \delta_1 > 0\ \forall x \in [a, a + \delta_1) : f(x) < 0 \implies x_0 \ge a + \delta_1 > a \\
+\left.
+\begin{aligned}
+&f \text{ е непрекъсната в } b \\
+&f(b) > 0
+\end{aligned}
+\right\}
+&\implies \exists \delta_2 > 0\ \forall x \in (b - \delta_2, b] : f(x) > 0 \implies x_0 \le b - \delta_2 < b
+\end{align*}
+
+Последователно допускаме, че $f(x_0) > 0$ и $f(x_0) < 0$ и достигаме до противоречие:
+\begin{itemize}
+    \item Ако $f(x_0) > 0$, то съществува $\delta > 0$ такова, че $(x_0 - \delta, x_0 + \delta) \subset (a, b)$ и $f(x) > 0$ за всяко $x \in (x_0 - \delta, x_0 + \delta)$ (тъй като $f$ е непрекъсната в $x_0$, то в някаква околност на точката функцията не мени знака си). Следователно $(x_0 - \delta, x_0 + \delta) \subset A$ и оттук $x_0$ не е долна граница на $A$, което е противоречие с допускането.
+    \item Ако $f(x_0) < 0$, то съществува $\delta > 0$ такова, че $(x_0 - \delta, x_0 + \delta) \subset (a, b)$ и $f(x) < 0$ за всяко $x \in (x_0 - \delta, x_0 + \delta)$. Следователно за всяко $x \in [x_0, x_0 + \delta)$ е изпълнено $x \notin A$. Ясно е, че ако $x \in [a, x_0)$, то също $x \notin A$ (защото $x_0$ е долна граница за $A$). Така получихме, че $x_0 + \delta$ е долна граница на $A$, която е по-голяма от $x_0 = \inf A$. Това е противоречие с дефиницията на инфимум.
+\end{itemize}
+След като $f(x_0) \not> 0$ и $f(x_0) \not< 0$, то остава $f(x_0) = 0$.
+\end{proof}
+
+\begin{proof}[Второ доказателство (чрез разполовяване)]
+Второто доказателство може да бъде разглеждано и като алгоритъм за търсене на корен на $f$. Отново б.о.о. нека $f(a) < 0$ и $f(b) > 0$. Означаваме $a_0 := a$, $b_0 := b$.
+
+В зависимост от $f\left(\frac{a_0 + b_0}{2}\right)$ полагаме:
+\[
+\begin{cases}
+\text{ако } f\left(\frac{a_0 + b_0}{2}\right) = 0 \implies x_0 := \frac{a_0 + b_0}{2} \in (a, b) \\
+\text{ако } f\left(\frac{a_0 + b_0}{2}\right) < 0 \implies a_1 := \frac{a_0 + b_0}{2},\ b_1 := b_0 \\
+\text{ако } f\left(\frac{a_0 + b_0}{2}\right) > 0 \implies a_1 := a_0,\ b_1 := \frac{a_0 + b_0}{2}
+\end{cases}
+\]
+
+В първия случай сме намерили корен и алгоритъмът приключва успешно. Ако сме построили интервала $[a_n, b_n]$ с $f(a_n) < 0$, $f(b_n) > 0$ и $b_n - a_n = \frac{b - a}{2^n}$, в зависимост от $f\left(\frac{a_n + b_n}{2}\right)$ полагаме:
+\[
+\begin{cases}
+\text{ако } f\left(\frac{a_n + b_n}{2}\right) = 0 \implies x_0 := \frac{a_n + b_n}{2} \in (a, b) \\
+\text{ако } f\left(\frac{a_n + b_n}{2}\right) < 0 \implies a_{n+1} := \frac{a_n + b_n}{2},\ b_{n+1} := b_n \\
+\text{ако } f\left(\frac{a_n + b_n}{2}\right) > 0 \implies a_{n+1} := a_n,\ b_{n+1} := \frac{a_n + b_n}{2}
+\end{cases}
+\]
+Отново в първия случай сме намерили корен и алгоритъмът е приключил успешно. В противен случай можем да продължим.
+
+Ако не сме намерили корен за краен брой стъпки, построили сме редица от вложени един в друг интервали $[a_0, b_0] \supset [a_1, b_1] \supset \dots \supset [a_n, b_n] \supset \dots$ такива, че:
+\[
+f(a_n) < 0 \text{ и } f(b_n) > 0\quad \forall n \in \mathbb{N}; \quad \text{в сила е } b_n - a_n = \frac{b - a}{2^n}\quad \forall n \in \mathbb{N}
+\]
+Да забележим, че поради характера на построението:
+\[
+\begin{cases}
+a = a_0 \le a_1 \le a_2 \le \dots \le a_n \le a_{n+1} \le \dots \\
+b = b_0 \ge b_1 \ge b_2 \ge \dots \ge b_n \ge b_{n+1} \ge \dots
+\end{cases}
+\]
+Сега, $\{a_n\}_{n=1}^\infty$ е ограничена ($a \le a_n \le b\ \forall n \in \mathbb{N}$) и растяща, следователно е сходяща -- да означим $\lim_{n \to \infty} a_n = x_0$. Също така, $\{b_n\}_{n=1}^\infty$ е ограничена ($a \le b_n \le b\ \forall n \in \mathbb{N}$) и намаляваща, следователно е сходяща -- ще покажем, че и $\lim_{n \to \infty} b_n = x_0$. Наистина,
+\[
+\lim_{n \to \infty} b_n = \lim_{n \to \infty} [(b_n - a_n) + a_n] = \lim_{n \to \infty} \left[\frac{b - a}{2^n} + a_n\right] = 0 + x_0 = x_0.
+\]
+Остава да използваме, че $f$ е непрекъсната в интервала $(a, b)$:
+\begin{align*}
+\left.
+\begin{aligned}
+&a_n \xrightarrow[n \to \infty]{} x_0 \\
+&f(a_n) < 0 \\
+&f \text{ е непрекъсната в } x_0
+\end{aligned}
+\right\}
+&\implies f(a_n) \xrightarrow[n \to \infty]{} f(x_0) \text{ и } f(x_0) \le 0 \\
+\left.
+\begin{aligned}
+&b_n \xrightarrow[n \to \infty]{} x_0 \\
+&f(b_n) > 0 \\
+&f \text{ е непрекъсната в } x_0
+\end{aligned}
+\right\}
+&\implies f(b_n) \xrightarrow[n \to \infty]{} f(x_0) \text{ и } f(x_0) \ge 0
+\end{align*}
+От $f(x_0) \ge 0$ и $f(x_0) \le 0$ получаваме, че $f(x_0) = 0$. С това доказателството е завършено.
+\end{proof}
+
+\begin{corollary}{Теорема за междинните стойности}{mezhdinni-stoynosti}
+Нека $f : [a, b] \to \mathbb{R}$ е непрекъсната. Ако $c \in \mathbb{R}$ е между $f(a)$ и $f(b)$ -- това значи $f(a) < c < f(b)$ или $f(b) < c < f(a)$, то съществува такова $x_0 \in (a, b)$, че $f(x_0) = c$.
+\end{corollary}
+
+\begin{proof}
+Разглеждаме функцията $g(x) = f(x) - c$. Тази функция е непрекъсната, дефинирана е в ограничения и затворен интервал $[a, b]$ и за нея е в сила $g(a) \cdot g(b) < 0$. Прилагаме Теоремата на Болцано за $g$ и получаваме $x_0 \in (a, b)$ с $0 = g(x_0) = f(x_0) - c$.
+\end{proof}
+
+\noindent\textbf{Пример 2.3.} Да разгледаме функцията $f(x) = x^2$ в интервала $[0, 2]$. Ако $c = 2$, то $c$ се намира между $f(0) = 0$ и $f(2) = 4$. Следователно, съществува $x_0 \in (0, 2) : x_0^2 = 2$.
+
+\begin{definition}{Интервал}{interval}
+$\Delta \subset \mathbb{R}$ наричаме \textbf{интервал}, ако от $x_1 \in \Delta$, $x_2 \in \Delta$ и $x_1 < x_2$ следва, че $[x_1, x_2] \subset \Delta$.
+\end{definition}
+
+\begin{corollary}{Непрекъснат образ на интервал}{nepr-obraz-interval}
+Непрекъснат образ на интервал е интервал. Формално, нека $f : \Delta \to \mathbb{R}$ е непрекъсната и $\Delta$ е интервал. Тогава множеството от стойности на $f$
+\[
+f(\Delta) = \{y \in \mathbb{R} : \exists x \in \Delta,\ y = f(x)\} = \{f(x) : x \in \Delta\}
+\]
+е интервал.
+\end{corollary}
+
+\begin{proof}
+Изхождаме от дефиницията за интервал. Ще вземем две точки $y_1, y_2 \in f(\Delta)$, които удовлетворяват $y_1 < y_2$. Искаме да покажем, че $[y_1, y_2] \subset f(\Delta)$, тоест искаме да покажем, че произволна точка $y \in [y_1, y_2]$ е елемент на $f(\Delta)$. От $y_1, y_2 \in f(\Delta)$ следва, че съществуват $x_1, x_2 \in \Delta$ такива, че $y_1 = f(x_1)$ и $y_2 = f(x_2)$. Тъй като не е възможно $x_1 = x_2$ и $y_1 < y_2$, възможни са само следните два случая:
+\begin{itemize}
+    \item Ако $x_1 < x_2$, то $[x_1, x_2] \subset \Delta$, защото $\Delta$ е интервал. Тъй като $y_1 = f(x_1) < y < f(x_2) = y_2$ и $f$ е непрекъсната в $[x_1, x_2]$, от теоремата за междинните стойности получаваме, че съществува $x_0 \in (x_1, x_2)$ с $f(x_0) = y$. Следователно $y \in f(\Delta)$.
+    \item Ако $x_1 > x_2$, то $[x_2, x_1] \subset \Delta$, защото $\Delta$ е интервал. Тъй като $y_2 = f(x_2) > y > f(x_1) = y_1$ и $f$ е непрекъсната в $[x_2, x_1]$, от теоремата за междинните стойности получаваме, че съществува $x_0 \in (x_2, x_1)$ с $f(x_0) = y$. Следователно $y \in f(\Delta)$.
+\end{itemize}
+Доказахме, че $[y_1, y_2] \subset f(\Delta)$, следователно $f(\Delta)$ е интервал.
+\end{proof}
+
+\subsection{Теорема на Вайерщрас}
+
+\begin{theorem}{Теорема на Вайерщрас}{weierstrass}
+Нека $f : [a, b] \to \mathbb{R}$ е непрекъсната. Тогава $f$ е ограничена (т.е. $f([a, b])$ е ограничено множество от реални числа) и $f$ има най-голяма стойност (т.е. съществува $x_{\max} \in [a, b] : f(x_{\max}) = \sup f([a, b]) = \sup \{f(x) : x \in [a, b]\}$) и най-малка стойност (т.е. съществува $x_{\min} \in [a, b] : f(x_{\min}) = \inf f([a, b]) = \inf \{f(x) : x \in [a, b]\}$).
+\end{theorem}
+
+\begin{proof}
+Допускаме, че $f([a, b])$ не е ограничено, т.е.
+\begin{align*}
+\neg (\exists N \in \mathbb{N}\ \forall x \in [a, b] : |f(x)| \le N) &\equiv \\
+\equiv \forall N \in \mathbb{N}\ \exists x \in [a, b] : |f(x)| &> N
+\end{align*}
+Последователно даваме на $N$ стойности $1, 2, 3, \dots, n, \dots$. Така:
+\[
+\begin{cases}
+\text{За } N = 1 : \exists x_1 \in [a, b], & |f(x_1)| > 1 \\
+\text{За } N = 2 : \exists x_2 \in [a, b], & |f(x_2)| > 2 \\
+\dots \\
+\text{За } N = n : \exists x_n \in [a, b], & |f(x_n)| > n \\
+\dots
+\end{cases}
+\]
+Построили сме редица $\{x_n\}_{n=1}^\infty \subset [a, b]$, за която $|f(x_n)| > n$. Прилагаме Теоремата на Болцано-Вайерщрас към ограничената редица $\{x_n\}_{n=1}^\infty$ и получаваме нейна сходяща подредица. Нека това е $\{x_{n_k}\}_{k=1}^\infty \subset \{x_n\}_{n=1}^\infty$ с $x_{n_k} \xrightarrow[k \to \infty]{} x_0$. Сега:
+\[
+\left.
+\begin{aligned}
+&x_0 \in [a, b] \\
+&f \text{ е непрекъсната в } x_0
+\end{aligned}
+\right\}
+\implies f(x_{n_k}) \xrightarrow[k \to \infty]{} f(x_0)
+\]
+По построение обаче имаме, че $|f(x_{n_k})| > n_k \xrightarrow[k \to \infty]{} \infty$, което е в противоречие с горната граница. Следователно допускането ни е невярно и $f([a, b])$ е ограничено множество.
+
+Да пристъпим към втората част на теоремата -- достигане на най-голяма и най-малка стойност в ограничения и затворен дефиниционен интервал на $f$. С цел опростяване на записа въвеждаме означението:
+\[
+\sup f([a, b]) \equiv \sup_{[a,b]} f \in \mathbb{R}
+\]
+Ще построим „максимизираща редица“. За произволно $n \in \mathbb{N}$ имаме:
+\[
+\sup_{[a,b]} f - \frac{1}{n} < \sup_{[a,b]} f \implies \exists x_n \in [a, b] : f(x_n) > \sup_{[a,b]} f - \frac{1}{n}.
+\]
+Построихме редицата $\{x_n\}_{n=1}^\infty \subset [a, b]$, за която $f(x_n) > \sup_{[a,b]} f - \frac{1}{n}$. Съгласно Теоремата на Болцано-Вайерщрас (принцип за компактност) съществува нейна подредица $\{x_{n_k}\}_{k=1}^\infty \subset \{x_n\}_{n=1}^\infty$ с $x_{n_k} \xrightarrow[k \to \infty]{} x_{\max} \in [a, b]$. По построение:
+\[
+\underbrace{\sup_{[a,b]} f - \frac{1}{n_k}}_{\xrightarrow[k \to \infty]{} \sup_{[a,b]} f} < f(x_{n_k}) \le \underbrace{\sup_{[a,b]} f}_{\xrightarrow[k \to \infty]{} \sup_{[a,b]} f}.
+\]
+От лемата за двамата полицаи получаваме, че
+\[
+f(x_{n_k}) \xrightarrow[k \to \infty]{} \sup_{[a,b]} f.
+\]
+От друга страна, непрекъснатостта на $f$ в точката $x_{\max} \in [a, b]$ влече, че
+\[
+f(x_{n_k}) \xrightarrow[k \to \infty]{} f(x_{\max}).
+\]
+Следователно $f(x_{\max}) = \sup_{[a,b]} f$ е най-голяма стойност за $f$.
+
+Проверката за достигане на най-малка стойност е аналогична.
+\end{proof}
+
+\begin{corollary}{Образ на компактен интервал}{obraz-kompakt}
+Нека $f : [a, b] \to \mathbb{R}$ е непрекъсната. Тогава $f([a, b])$ е ограничен и затворен интервал.
+\end{corollary}
+
+\begin{proof}
+За доказателството е достатъчно да приложим второто следствие от Теоремата на Болцано и Теоремата на Вайерщрас.
+\end{proof}
+
+\subsection{Равномерна непрекъснатост. Теорема на Кантор}
+
+\begin{definition}{Равномерна непрекъснатост}{ravnomerna-neprekysnatost}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$. Казваме, че $f$ е \textbf{равномерно непрекъсната в} $D$, ако е в сила:
+\[
+\forall \varepsilon > 0\ \exists \delta > 0\ \forall x \in D\ \forall x' \in D,\ |x - x'| < \delta : |f(x) - f(x')| < \varepsilon
+\]
+\end{definition}
+
+Добре е да осъзнаете разликата между дефиницията за равномерна непрекъснатост и дефиницията за непрекъснатост:
+\[
+\forall x \in D\ \forall \varepsilon > 0\ \exists \delta > 0\ \forall x' \in D,\ |x - x'| < \delta : |f(x) - f(x')| < \varepsilon
+\]
+Разликата се състои в едно разместване. При равномерната непрекъснатост $\delta$ зависи само от $\varepsilon$, но не и от точката $x$, докато при непрекъснатостта $\delta$ може да зависи и от $x$. Равномерната непрекъснатост е по-силна от непрекъснатостта в смисъл, че равномерно непрекъсната функция винаги е непрекъсната, докато обратното не е задължително вярно (следващата теорема дава достатъчно условие, когато обратното е вярно). Грубо казано, равномерната непрекъснатост забранява „безкрайната стръмност“ на функцията, но разгледайте внимателно втория пример.
+
+\noindent\textbf{Пример 2.9.} Да разгледаме функцията $f(x) = x^2$.
+\begin{enumerate}
+    \item Функцията $f$ е равномерно непрекъсната в множеството $[-M, M]$ за произволно положително $M > 0$.
+    
+    В този случай имаме:
+    \[
+    |f(x) - f(x')| = |x^2 - x'^2| = |x - x'||x + x'| \le 2M|x - x'|
+    \]
+    и за произволно $\varepsilon > 0$ можем да намерим $\delta > 0$, която зависи само от $\varepsilon$. Наистина, ако сме фиксирали $\varepsilon > 0$, достатъчно е да положим $\delta := \frac{\varepsilon}{2M} > 0$ и да получим:
+    \[
+    |x - x'| < \delta = \frac{\varepsilon}{2M} \implies |f(x) - f(x')| \le 2M|x - x'| < 2M\delta = \varepsilon.
+    \]
+
+    \item Функцията $f$ не е равномерно непрекъсната в множеството $[0, +\infty)$.
+    
+    Да допуснем, че за $\varepsilon = 1 > 0$ съществува $\delta > 0$ такова, че от $|x - x'| < \delta$ да следва $|f(x) - f(x')| < \varepsilon$. Ако $x \in [0, +\infty)$ е произволно, за точката $x' := x + \frac{\delta}{2}$ имаме, че $x' \in [0, +\infty)$ и при това $|x - x'| < \delta$. От друга страна:
+    \[
+    |x'^2 - x^2| = x^2 + \delta x + \left(\frac{\delta}{2}\right)^2 - x^2 = \delta x + \left(\frac{\delta}{2}\right)^2 \xrightarrow[x \to +\infty]{} +\infty.
+    \]
+    Следователно за достатъчно големи $x$ стойността $|f(x) - f(x')|$ ще стане по-голяма от едно.
+\end{enumerate}
+
+\noindent\textbf{Пример 2.10.} Да разгледаме функцията $f : [0, +\infty) \to \mathbb{R}$, $f(x) = \sqrt{x}$. Ще покажем, че $f$ е равномерно непрекъсната в цялата си дефиниционна област.
+
+За произволно $\varepsilon > 0$ избираме $\delta = \varepsilon^2 > 0$ (сетихме се да направим това, защото това $\delta$ върши работа в нулата, където функцията е „най-стръмна“). Разглеждаме следните два случая:
+\begin{enumerate}
+    \item Ако поне едно от $x$ и $x'$ е в интервала $[\delta, +\infty)$, то:
+    \[
+    |f(x) - f(x')| = |\sqrt{x} - \sqrt{x'}| = \frac{|x - x'|}{\sqrt{x} + \sqrt{x'}}
+    \]
+    и имаме $\sqrt{x} + \sqrt{x'} \ge \sqrt{\delta}$, и следователно $\frac{1}{\sqrt{x} + \sqrt{x'}} \le \frac{1}{\sqrt{\delta}}$. Оттук получаваме:
+    \[
+    |\sqrt{x} - \sqrt{x'}| = \frac{|x - x'|}{\sqrt{x} + \sqrt{x'}} \le \frac{|x - x'|}{\sqrt{\delta}} < \frac{\delta}{\sqrt{\delta}} = \sqrt{\delta} = \varepsilon.
+    \]
+    Естествено, тук ползвахме, че $x, x' \in [0, +\infty)$ и $|x - x'| < \delta$ от дефиницията.
+    \item Ако $x, x' \in [0, \delta)$, то:
+    \[
+    |\sqrt{x} - \sqrt{x'}| < \sqrt{\delta} - 0 = \sqrt{\delta} = \varepsilon.
+    \]
+\end{enumerate}
+Убедихме се, че и в двата случая изборът на $\delta = \varepsilon^2$ е подходящ за доказването на равномерната непрекъснатост на $f$.
+
+\begin{theorem}{Теорема на Кантор}{cantor}
+Ако $f : [a, b] \to \mathbb{R}$ е непрекъсната, то $f$ е равномерно непрекъсната в $[a, b]$.
+\end{theorem}
+
+\begin{proof}
+Допускаме противното, тоест $f$ не е равномерно непрекъсната в $[a, b]$:
+\begin{align*}
+\neg (\forall \varepsilon > 0\ \exists \delta > 0\ \forall x \in [a, b]\ \forall x' \in [a, b],\ |x - x'| < \delta : |f(x) - f(x')| < \varepsilon) &\equiv \\
+\equiv \exists \varepsilon_0 > 0\ \forall \delta > 0\ \exists x \in [a, b]\ \exists x' \in [a, b],\ |x - x'| < \delta : |f(x) - f(x')| &\ge \varepsilon_0.
+\end{align*}
+Последователно даваме стойности $1, \frac{1}{2}, \frac{1}{3}, \dots, \frac{1}{n}, \dots$ на $\delta$. Имаме:
+\[
+\begin{cases}
+\delta = 1 \implies \exists x_1, x'_1 \in [a, b] : |x_1 - x'_1| < 1 \text{ и } |f(x_1) - f(x'_1)| \ge \varepsilon_0 \\
+\delta = \frac{1}{2} \implies \exists x_2, x'_2 \in [a, b] : |x_2 - x'_2| < \frac{1}{2} \text{ и } |f(x_2) - f(x'_2)| \ge \varepsilon_0 \\
+\dots \\
+\delta = \frac{1}{n} \implies \exists x_n, x'_n \in [a, b] : |x_n - x'_n| < \frac{1}{n} \text{ и } |f(x_n) - f(x'_n)| \ge \varepsilon_0 \\
+\dots
+\end{cases}
+\]
+Получаваме редиците $\{x_n\}_{n=1}^\infty \subset [a, b]$ и $\{x'_n\}_{n=1}^\infty \subset [a, b]$ с
+\[
+|x_n - x'_n| < \frac{1}{n}\quad \forall n \in \mathbb{N} \quad \text{и} \quad |f(x_n) - f(x'_n)| \ge \varepsilon_0\quad \forall n \in \mathbb{N}.
+\]
+Редицата $\{x_n\}_{n=1}^\infty$ е ограничена и според Теоремата на Болцано-Вайерщрас съществува нейна подредица $\{x_{n_k}\}_{k=1}^\infty$ с $x_{n_k} \xrightarrow[k \to \infty]{} x_0 \in [a, b]$. Да разгледаме подредицата $\{x'_{n_k}\}_{k=1}^\infty$ на $\{x'_n\}_{n=1}^\infty$ със същите индекси. Ще покажем, че тя е сходяща и има същата граница:
+\[
+|x'_{n_k} - x_0| \le |x'_{n_k} - x_{n_k}| + |x_{n_k} - x_0| < \frac{1}{n_k} + |x_{n_k} - x_0| \xrightarrow[k \to \infty]{} 0.
+\]
+Следователно $x'_{n_k} \xrightarrow[k \to \infty]{} x_0$. Сега:
+\[
+f \text{ е непрекъсната в } x_0 \in [a, b] \implies
+\begin{cases}
+f(x_{n_k}) \xrightarrow[k \to \infty]{} f(x_0) \\
+f(x'_{n_k}) \xrightarrow[k \to \infty]{} f(x_0)
+\end{cases}
+\]
+Получаваме, че $f(x_{n_k}) - f(x'_{n_k}) \xrightarrow[k \to \infty]{} f(x_0) - f(x_0) = 0$. По построение обаче имахме $|f(x_{n_k}) - f(x'_{n_k})| \ge \varepsilon_0$ за всяко $k \in \mathbb{N}$. Полученото противоречие завършва доказателството на теоремата.
+\end{proof}
+
+\subsection*{Задача за обмисляне вкъщи}
+
+\begin{problembox}{Упражнение 2.12}
+Нека $f : \mathbb{R} \to \mathbb{R}$ е равномерно непрекъсната върху цялата реална права. Докажете, че $f$ има линеен ръст, тоест съществуват константи $C_1$ и $C_2$ такива, че
+\[
+|f(x)| \le C_1 + C_2 \cdot |x|
+\]
+за всяко реално $x$.
+\end{problembox}

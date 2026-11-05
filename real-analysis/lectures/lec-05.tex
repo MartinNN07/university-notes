@@ -1,0 +1,441 @@
+\section*{Лекция 05: 4 ноември 2026 г.}
+
+\section{Еквивалентност на дефинициите за граница на функция във формата на Коши и във формата на Хайне}
+
+Да напомним дефинициите за граница на функция, които дадохме в края на миналата лекция:
+
+\begin{definition}{Граница на функция във формата на Коши}{cauchy-limit}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$ и нека $x_0 \in \mathbb{R}$ е точка на сгъстяване на $D$. Казваме, че функцията $f$ има граница $L \in \mathbb{R}$, когато аргументът клони към $x_0$ (и пишем $\lim_{x \to x_0} f(x) = L$), ако за всяка околност $U$ на $L$ съществува околност $V$ на $x_0$ такава, че за всяко $x \in V \cap D$, $x \neq x_0$ е в сила $f(x) \in U$.
+
+Можем да формулираме тази дефиниция по еквивалентен начин: $\lim_{x \to x_0} f(x) = L$, ако за всяко $\varepsilon > 0$ съществува $\delta > 0$ такова, че за всички $x \in D \setminus \{x_0\}$, за които $|x - x_0| < \delta$, е в сила $|f(x) - L| < \varepsilon$.
+\end{definition}
+
+\begin{definition}{Граница на функция във формата на Хайне}{heine-limit}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$ и нека $x_0 \in \mathbb{R}$ е точка на сгъстяване на $D$. Казваме, че функцията $f$ има граница $L \in \mathbb{R}$, когато аргументът клони към $x_0$, ако за всяка редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ от стойности на аргумента, която клони към $x_0$, съответната редица от функционални стойности $\{f(x_n)\}_{n=1}^{\infty}$ клони към $L$:
+\[
+\forall \{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}, \quad x_n \xrightarrow[n \to \infty]{} x_0 \implies f(x_n) \xrightarrow[n \to \infty]{} L.
+\]
+\end{definition}
+
+\begin{theorem}{Еквивалентност на дефинициите на Коши и Хайне}{cauchy-heine-equiv}
+Дефинициите за граница на функция във формата на Коши и във формата на Хайне са еквивалентни.
+\end{theorem}
+
+\begin{proof}
+\textbf{1)} $\lim_{x \to x_0} f(x) = L$ в смисъл на Коши $\implies \lim_{x \to x_0} f(x) = L$ в смисъл на Хайне.
+
+Нека $\{x_n\}_{n=1}^{\infty}$ е произволна редица с $x_n \in D$, $x_n \neq x_0$ за всяко $n \in \mathbb{N}$ и $x_n \xrightarrow[n \to \infty]{} x_0$. Избираме произволно $\varepsilon > 0$ и разглеждаме околност $(L - \varepsilon, L + \varepsilon)$ на $L$. От дефиницията на Коши:
+\[
+\lim_{x \to x_0} f(x) = L \implies \exists \delta > 0 \; \forall x \in D \cap (x_0 - \delta, x_0 + \delta), \; x \neq x_0 : f(x) \in (L - \varepsilon, L + \varepsilon).
+\]
+Тъй като $\delta > 0$ и $x_n \xrightarrow[n \to \infty]{} x_0$, то $\exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : |x_n - x_0| < \delta$. Ако $n \ge n_0$, имаме $x_n \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\}$ и следователно $f(x_n) \in (L - \varepsilon, L + \varepsilon)$. С това доказахме, че $f(x_n) \xrightarrow[n \to \infty]{} L$.
+
+\medskip
+\textbf{2)} $\lim_{x \to x_0} f(x) = L$ в смисъл на Хайне $\implies \lim_{x \to x_0} f(x) = L$ в смисъл на Коши.
+
+Искаме да докажем, че:
+\[
+\forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x \in D, \; x \neq x_0, \; |x - x_0| < \delta : |f(x) - L| < \varepsilon.
+\]
+Допускаме противното, т.е.
+\begin{align*}
+\neg \big( \forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x \in D, \; x \neq x_0, \; |x - x_0| < \delta : |f(x) - L| < \varepsilon \big) \\
+\equiv \exists \varepsilon_0 > 0 \; \forall \delta > 0 \; \exists x_\delta \in D, \; x_\delta \neq x_0, \; |x_\delta - x_0| < \delta : |f(x_\delta) - L| \ge \varepsilon_0.
+\end{align*}
+В отрицанието означаваме $\varepsilon$ с $\varepsilon_0$, за да подчертаем, че то ще бъде фиксирано до края на доказателството. Също така написахме $x_\delta$, за да си дадем по-ясно сметка, че съответната точка зависи от избора на $\delta$. Използваме това, като последователно даваме на $\delta$ стойности $1, \frac{1}{2}, \frac{1}{3}, \dots, \frac{1}{n}, \dots$:
+\[
+\begin{cases}
+\delta = 1 &\implies \exists x_1 \in D, \; x_1 \neq x_0, \; |x_1 - x_0| < 1 : |f(x_1) - L| \ge \varepsilon_0, \\
+\delta = \frac{1}{2} &\implies \exists x_2 \in D, \; x_2 \neq x_0, \; |x_2 - x_0| < \frac{1}{2} : |f(x_2) - L| \ge \varepsilon_0, \\
+\dots \\
+\delta = \frac{1}{n} &\implies \exists x_n \in D, \; x_n \neq x_0, \; |x_n - x_0| < \frac{1}{n} : |f(x_n) - L| \ge \varepsilon_0, \\
+\dots
+\end{cases}
+\]
+Построиxме редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ с $x_n \xrightarrow[n \to \infty]{} x_0$ (защото $|x_n - x_0| < \frac{1}{n} \xrightarrow[n \to \infty]{} 0$).
+
+Следователно по дефиницията на $f(x) \xrightarrow[x \to x_0]{} L$ във формата на Хайне е в сила $f(x_n) \xrightarrow[n \to \infty]{} L$, което е в очевидно противоречие с $|f(x_n) - L| \ge \varepsilon_0 > 0$ за всяко естествено $n$ (по построение).
+\end{proof}
+
+\section{Основни свойства на граници на функции}
+
+Да отбележим, че еквивалентността на двете дефиниции за граница ни дава възможност да избираме по-подходящия инструмент в зависимост от проблема, който решаваме.
+
+\begin{theorem}{Локална запазеност на неравенство при граница}{preserve-inequality}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$ и нека $x_0 \in \mathbb{R}$ е точка на сгъстяване на $D$. Нека $f(x) \xrightarrow[x \to x_0]{} L$ и $L > c$ ($L < c$). Тогава съществува околност $V$ на $x_0$ такава, че $f(x) > c$ ($f(x) < c$) за всяко $x \in V \cap D$, $x \neq x_0$.
+\end{theorem}
+
+\begin{proof}
+За да докажем това твърдение, е достатъчно да приложим дефиницията за граница на функция във формата на Коши за околността $U = (c, +\infty)$ ($U = (-\infty, c)$) на границата $L$.
+\end{proof}
+
+Да направим и следната важна забележка: границата на функция е „локално понятие“ в смисъл, че ако две функции съвпадат в някаква околност на точката, към която клони аргументът, то едната притежава граница точно тогава, когато притежава граница и другата, и при това стойностите на границата са равни. По-неформално казано, съществуването и стойността на границата зависят само от стойностите на функцията в околност на точката, към която клони аргументът.
+
+\begin{theorem}{Граници и аритметични действия}{limit-arithmetic}
+Нека $f, g : D \to \mathbb{R}$, $D \subset \mathbb{R}$ и нека $x_0$ е точка на сгъстяване на $D$. Предполагаме, че $\lim_{x \to x_0} f(x) = L_f$ и $\lim_{x \to x_0} g(x) = L_g$. Тогава са в сила следните свойства:
+\begin{enumerate}
+    \item $\lim_{x \to x_0} (f(x) + g(x)) = L_f + L_g$;
+    \item $\lim_{x \to x_0} (f(x) \cdot g(x)) = L_f \cdot L_g$;
+    \item Ако $L_g \neq 0$, то $\lim_{x \to x_0} \left( \frac{f(x)}{g(x)} \right) = \frac{L_f}{L_g}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Избираме произволна сходяща редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ с $x_n \xrightarrow[n \to \infty]{} x_0$. Тогава от предположенията за границите на $f$ и $g$, съгласно дефиницията на Хайне, имаме:
+\[
+\begin{cases}
+f(x_n) \xrightarrow[n \to \infty]{} L_f \\
+g(x_n) \xrightarrow[n \to \infty]{} L_g
+\end{cases}
+\]
+Следователно можем да приложим известните ни свойства за числови редици:
+\[
+\begin{cases}
+f(x_n) + g(x_n) \xrightarrow[n \to \infty]{} L_f + L_g \\
+f(x_n) g(x_n) \xrightarrow[n \to \infty]{} L_f \cdot L_g \\
+\frac{f(x_n)}{g(x_n)} \xrightarrow[n \to \infty]{} \frac{L_f}{L_g}, \quad \text{ако } L_g \neq 0
+\end{cases}
+\]
+По този начин получаваме съществуването и стойността на границите в твърдението отново по дефиницията във формата на Хайне.
+\end{proof}
+
+Разбира се, от горното твърдение веднага получаваме и правило за граница на разликата на две функции.
+
+\begin{definition}{Композиция на функции}{composition}
+Ако са дадени функциите $f : X \to Y$ и $g : Y \to Z$, то композиция на $f$ и $g$ е изображението $g \circ f : X \to Z$, зададено с $(g \circ f)(x) = g(f(x))$ за всяко $x \in X$.
+\end{definition}
+
+\begin{theorem}{Граница на композиция на функции}{composite-limit}
+Нека $f : D \to D_1$, $g : D_1 \to \mathbb{R}$; $D, D_1 \subset \mathbb{R}$. Нека $x_0$ е точка на сгъстяване на $D$. Ако
+\[
+\lim_{x \to x_0} f(x) = y_0, \quad f(x) \neq y_0 \text{ при } x \neq x_0 \quad \text{и} \quad \lim_{y \to y_0} g(y) = L,
+\]
+то съществува $\lim_{x \to x_0} (g \circ f)(x) = L$.
+\end{theorem}
+
+\begin{proof}
+Отново използваме дефиницията за граница на функция във формата на Хайне. По-точно, разглеждаме редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ с $x_n \xrightarrow[n \to \infty]{} x_0$. Ползваме, че:
+\[
+\lim_{x \to x_0} f(x) = y_0 \implies f(x_n) \xrightarrow[n \to \infty]{} y_0.
+\]
+Означаваме $y_n := f(x_n)$ за всяко $n \in \mathbb{N}$. Тогава знаем, че $\{y_n\}_{n=1}^{\infty} \subset D_1$ и $y_n \xrightarrow[n \to \infty]{} y_0$. При това за произволно $n$ имаме $y_n = f(x_n) \neq y_0$ от предположението. Повторно прилагане на Хайне дава:
+\[
+\lim_{y \to y_0} g(y) = L \implies g(y_n) \xrightarrow[n \to \infty]{} L.
+\]
+Съществуването на границата е директно от $g(y_n) = g(f(x_n)) = (g \circ f)(x_n) \xrightarrow[n \to \infty]{} L$.
+\end{proof}
+
+\noindent\textbf{Пример 2.5.}
+\[
+\lim_{x \to 0} \frac{\sin 5x}{\sin 7x} = \lim_{x \to 0} \frac{5x \cdot \frac{\sin 5x}{5x}}{7x \cdot \frac{\sin 7x}{7x}} = \frac{5}{7} \lim_{x \to 0} \frac{\frac{\sin 5x}{5x}}{\frac{\sin 7x}{7x}} = \frac{5}{7} \cdot \frac{\lim_{x \to 0} \frac{\sin 5x}{5x}}{\lim_{x \to 0} \frac{\sin 7x}{7x}} = \frac{5}{7} \cdot \frac{\lim_{y \to 0} \frac{\sin y}{y}}{\lim_{z \to 0} \frac{\sin z}{z}} = \frac{5}{7}.
+\]
+Ползваме, че $\lim_{x \to 0} \frac{\sin x}{x} = 1$. В този пример $x$ е аргумент на $y = f(x) := 5x$ и $f$ на свой ред е аргумент за $g(y) := \sin y$. Когато $x \to 0$, то $y \to 0$ със стойности, различни от нула. Аналогично в знаменателя, когато $x \to 0$, то $z = 7x \to 0$ със стойности, различни от нула.
+
+\begin{theorem}{Граници на функции и неравенства}{limits-inequalities}
+Нека $f, g : D \to \mathbb{R}$, $D \subset \mathbb{R}$, $x_0$ е точка на сгъстяване на $D$, $\lim_{x \to x_0} f(x) = L_1$ и $\lim_{x \to x_0} g(x) = L_2$. Тогава:
+\begin{enumerate}
+    \item[(а)] Ако $f(x) \le g(x)$ за $x \in D$, то $L_1 \le L_2$.
+    \item[(б)] Ако $h : D \to \mathbb{R}$ е такава, че $f(x) \le h(x) \le g(x)$ за $x \in D$ и $L_1 = L_2 = L$, то $\lim_{x \to x_0} h(x) = L$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Отново най-удобна за доказателство е дефиницията на Хайне. Избираме произволна сходяща редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ с $x_n \xrightarrow[n \to \infty]{} x_0$. Следователно:
+\[
+\left.
+\begin{aligned}
+f(x_n) &\xrightarrow[n \to \infty]{} L_1 \\
+g(x_n) &\xrightarrow[n \to \infty]{} L_2
+\end{aligned}
+\right\} \implies 
+\underbrace{f(x_n)}_{\xrightarrow[n \to \infty]{} L_1} \le \underbrace{h(x_n)}_{\xrightarrow[n \to \infty]{} L_1 = L_2} \le \underbrace{g(x_n)}_{\xrightarrow[n \to \infty]{} L_2} \quad \forall n \in \mathbb{N}.
+\]
+\end{proof}
+
+\section{Граници на функции, когато аргументът дивергира към безкрайност и функции, които дивергират към безкрайност}
+
+Сега разширяваме дефиницията за граница на функцията $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$ в две посоки: разрешаваме точката $\xi$, към която клони аргументът, освен реално число да може да бъде и някой от символите $+\infty$, $-\infty$, $\infty$. Аналогично, освен да клони към някакво реално число, функцията може да дивергира към $+\infty$, $-\infty$ или $\infty$.
+
+\begin{definition}{Граница на функция в разширения смисъл (Коши)}{extended-limit-cauchy}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$ и нека $\xi \in \mathbb{R} \cup \{+\infty\} \cup \{-\infty\} \cup \{\infty\}$ е точка на сгъстяване на $D$. Казваме, че функцията $f$ има граница (дивергира към, ако става въпрос за безкраен символ) $\eta \in \mathbb{R} \cup \{+\infty\} \cup \{-\infty\} \cup \{\infty\}$, когато аргументът клони към $\xi$ (и пишем $\lim_{x \to \xi} f(x) = \eta$), ако за всяка околност $U$ на $\eta$ съществува околност $V$ на $\xi$ такава, че за всяко $x \in V \cap D$, $x \neq \xi$ е в сила $f(x) \in U$.
+\end{definition}
+
+\begin{definition}{Граница на функция в разширения смисъл (Хайне)}{extended-limit-heine}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$ и нека $\xi \in \mathbb{R} \cup \{+\infty\} \cup \{-\infty\} \cup \{\infty\}$ е точка на сгъстяване на $D$. Казваме, че функцията $f$ има граница (дивергира към, ако става въпрос за безкраен символ) $\eta \in \mathbb{R} \cup \{+\infty\} \cup \{-\infty\} \cup \{\infty\}$, когато аргументът клони към $\xi$, ако за всяка редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{\xi\}$ от стойности на аргумента, която клони към $\xi$, съответната редица от функционални стойности $\{f(x_n)\}_{n=1}^{\infty}$ клони към $\eta$:
+\[
+\forall \{x_n\}_{n=1}^{\infty} \subset D \setminus \{\xi\}, \quad x_n \xrightarrow[n \to \infty]{} \xi \implies f(x_n) \xrightarrow[n \to \infty]{} \eta.
+\]
+\end{definition}
+
+Първият въпрос, който е редно да си зададем, е какво означава „$\xi \in \mathbb{R} \cup \{+\infty\} \cup \{-\infty\} \cup \{\infty\}$ е точка на сгъстяване на $D$“. Дефиницията е същата, както когато $\xi$ е реално число: във всяка околност на безкрайния символ ($+\infty$, $-\infty$ или $\infty$) има точка от $D$ (тук има опростяване, тъй като няма как елемент на $D$ да съвпада с $+\infty$, $-\infty$ или $\infty$) или, еквивалентно, съществува редица от елементи на $D$, дивергираща към безкрайния символ.
+
+И в тази по-обща ситуация резултатът за еквивалентност на дефиницията във формата на Коши и на дефиницията във формата на Хайне остава верен, като необходимите промени в доказателството, доколкото ги има, са тривиални.
+
+Забележете, че сега всъщност сме дали не една, а 16 дефиниции (4 по 4). Във всеки отделен случай съответната дефиниция във формата на Коши може (и трябва) да бъде преформулирана, като се използва видът на базовите околности на $\xi$ и $\eta$.
+
+\medskip
+\noindent\textbf{Пример 3.3.} Нека формулираме дефиницията (във формата на Коши) на $\lim_{x \to -\infty} f(x) = L$, където $L \in \mathbb{R}$, по по-конкретен начин: за всяко $\varepsilon > 0$ съществува $M \in \mathbb{R}$ такова, че за всички $x \in D$, за които $x < M$, е в сила $|f(x) - L| < \varepsilon$.
+
+\section{Необходимо и достатъчно условие на Коши за съществуване на граница на функция}
+
+Както при редици, важно е да имаме условие за съществуване на граница на функция, което зависи само от стойностите на функцията, но не и от евентуалната граница. Следващата теорема дава такова условие, което е аналогично на съответния резултат при редици.
+
+\begin{theorem}{Критерий на Коши за съществуване на граница}{cauchy-criterion}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$, $x_0$ е точка на сгъстяване на $D$. Твърдим, че:
+\begin{align*}
+\exists L \in \mathbb{R} : \lim_{x \to x_0} f(x) = L \iff \\
+\iff \forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x', x'' \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\} : |f(x') - f(x'')| < \varepsilon.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Доказателството провеждаме в две посоки.
+
+\medskip
+\textbf{($\implies$) $\lim_{x \to x_0} f(x) = L \implies$ НДУ на Коши.}
+
+Избираме $\varepsilon > 0$. Тогава:
+\[
+\exists \delta > 0 \; \forall x \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\} : |f(x) - L| < \frac{\varepsilon}{2}.
+\]
+Така намерената $\delta$-околност на $x_0$ може да бъде използвана за условието на Коши. Наистина, нека $x', x'' \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\}$ са произволни. Тогава
+\[
+\left.
+\begin{aligned}
+|f(x') - L| &< \frac{\varepsilon}{2} \\
+|f(x'') - L| &< \frac{\varepsilon}{2}
+\end{aligned}
+\right\} \implies |f(x') - f(x'')| = |f(x') - L + L - f(x'')| \le |f(x') - L| + |f(x'') - L|.
+\]
+Разбира се, имаме $|f(x') - L| < \frac{\varepsilon}{2}$ и $|f(x'') - L| < \frac{\varepsilon}{2}$, следователно $|f(x') - f(x'')| < \varepsilon$.
+
+\medskip
+\textbf{($\impliedby$) НДУ на Коши $\implies \exists L \in \mathbb{R} : \lim_{x \to x_0} f(x) = L$.}
+
+Нека да разгледаме произволна редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ с $x_n \xrightarrow[n \to \infty]{} x_0$. Ще покажем, че съответната редица от функционални стойности $\{f(x_n)\}_{n=1}^{\infty}$ е фундаментална. Наистина, нека $\varepsilon > 0$ е произволно. Тогава
+\[
+\exists \delta > 0 \; \forall x', x'' \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\} : |f(x') - f(x'')| < \varepsilon.
+\]
+От $x_n \xrightarrow[n \to \infty]{} x_0$ следва, че $\exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : |x_n - x_0| < \delta$. Следователно знаем, че за всяко $n \ge n_0$ е в сила $x_n \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\}$. Ако $m$ и $n$ са произволни естествени числа, по-големи или равни на $n_0$, имаме:
+\[
+x_m, x_n \in (D \cap (x_0 - \delta, x_0 + \delta)) \setminus \{x_0\} \implies |f(x_m) - f(x_n)| < \varepsilon.
+\]
+Това доказва, че редицата $\{f(x_n)\}_{n=1}^{\infty}$ е фундаментална.
+
+И тъй, за произволна редица $\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}$ с $x_n \xrightarrow[n \to \infty]{} x_0$ съответната редица от функционални стойности $\{f(x_n)\}_{n=1}^{\infty}$ е фундаментална, а следователно и сходяща. Длъжни сме обаче да проверим, че границата на $\{f(x_n)\}_{n=1}^{\infty}$ не зависи от редицата $\{x_n\}_{n=1}^{\infty}$, а само от $f$ и $x_0$.
+
+Нека аргументът се приближава към $x_0$ по два различни начина:
+\[
+\begin{cases}
+\{x_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}, \; x_n \xrightarrow[n \to \infty]{} x_0 \implies \{f(x_n)\}_{n=1}^{\infty} \text{ е фунд.} \implies f(x_n) \xrightarrow[n \to \infty]{} L', \\
+\{y_n\}_{n=1}^{\infty} \subset D \setminus \{x_0\}, \; y_n \xrightarrow[n \to \infty]{} x_0 \implies \{f(y_n)\}_{n=1}^{\infty} \text{ е фунд.} \implies f(y_n) \xrightarrow[n \to \infty]{} L''.
+\end{cases}
+\]
+Ще докажем, че $L' = L''$. По този начин ще се убедим, че границата е една и съща независимо от начина, по който се приближаваме към $x_0$. За тази цел разглеждаме „смесената“ редица от $\{x_n\}_{n=1}^{\infty}$ и $\{y_n\}_{n=1}^{\infty}$:
+\[
+x_1, y_1, x_2, y_2, \dots, x_n, y_n, \dots \xrightarrow[n \to \infty]{} x_0.
+\]
+Тя отговаря на всички условия, при които сме доказали току-що, че съответната редица от функционални стойности е сходяща:
+\[
+f(x_1), f(y_1), f(x_2), f(y_2), \dots, f(x_n), f(y_n), \dots \xrightarrow[n \to \infty]{} L.
+\]
+Тъй като всяка подредица на сходяща редица има същата граница, оттук получаваме, че $L' = L$ и $L'' = L$. С това доказателството е завършено.
+\end{proof}
+
+\medskip
+\noindent\textbf{Пример 4.2.} Да си спомним един от примерите, които разгледахме преди да въведем понятието за граница на функция, и да докажем строго, че $\lim_{x \to 0} \sin \frac{1}{x}$ не съществува.
+
+Нека $k \in \mathbb{N}$ е произволно. Тогава:
+\[
+\left.
+\begin{aligned}
+x'_k &= \frac{1}{2k\pi - \frac{\pi}{2}} \implies f(x'_k) = -1 \\
+x''_k &= \frac{1}{2k\pi + \frac{\pi}{2}} \implies f(x''_k) = 1
+\end{aligned}
+\right\} \implies |f(x'_k) - f(x''_k)| = 2.
+\]
+Тъй като в произволна околност на нулата има точки от вида $x'_k, x''_k$ за достатъчно големи $k \in \mathbb{N}$, горните пресмятания водят до противоречие с необходимото и достатъчно условие на Коши за съществуване на граница на функция, ако сме избрали $\varepsilon = 2$.
+
+\section{Лява и дясна граница на функция}
+
+Един от другите примери, които разгледахме преди да въведем понятието за граница на функция, беше функцията „цяла част“. В този пример границата не съществуваше, когато аргументът клони към цяло число, защото имаше значение дали се приближава към цялото число отляво или отдясно. Това е достатъчно прост случай на несъществуване на граница, който заслужава да бъде разгледан отделно.
+
+\begin{definition}{Рестрикция на функция}{restriction}
+Нека $f : X \to Y$ е произволно изображение и нека $A$ е подмножество на дефиниционната му област $X$. Тогава рестрикция (или ограничение) на $f$ върху $A$ (означение $f|_A$) наричаме изображението $f|_A : A \to Y$, дефинирано с $f|_A(x) = f(x)$ за $x \in A$ (тоест просто стесняваме дефиниционната област на $f$).
+\end{definition}
+
+\begin{definition}{Лява и дясна граница на функция}{one-sided-limits}
+Нека $f : D \to \mathbb{R}$, $D \subset \mathbb{R}$, $x_0 \in \mathbb{R}$. Лява граница на $f$, когато аргументът клони към $x_0$ (означение $\lim_{x \to x_0^-} f(x)$ или $\lim_{x \to x_0 - 0} f(x)$ или $\lim_{\substack{x \to x_0 \\ x < x_0}} f(x)$), наричаме $\lim_{x \to x_0} \left( f|_{D \cap (-\infty, x_0)} \right)(x)$ (и в смисъл на съществуване).
+
+Това означава, че $x_0$ е точка на сгъстяване на $D \cap (-\infty, x_0)$ и $\lim_{x \to x_0^-} f(x) = L$ точно когато:
+\[
+\forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x \in D \cap (x_0 - \delta, x_0) : |f(x) - L| < \varepsilon.
+\]
+Ако използваме еквивалентната дефиниция във формата на Хайне, получаваме:
+\[
+\lim_{x \to x_0^-} f(x) = L \iff \forall \{x_n\}_{n=1}^{\infty} \subset D \cap (-\infty, x_0), \quad x_n \xrightarrow[n \to \infty]{} x_0 \implies f(x_n) \xrightarrow[n \to \infty]{} L.
+\]
+Аналогично се дефинира и дясна граница на функция:
+\[
+\lim_{x \to x_0^+} f(x) := \lim_{x \to x_0} \left( f|_{D \cap (x_0, +\infty)} \right)(x).
+\]
+Това означава, че $x_0$ е точка на сгъстяване на $D \cap (x_0, +\infty)$ и $\lim_{x \to x_0^+} f(x) = L$ точно когато:
+\[
+\forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x \in D \cap (x_0, x_0 + \delta) : |f(x) - L| < \varepsilon.
+\]
+\end{definition}
+
+\begin{theorem}{Критерий за съществуване на граница чрез едностранните граници}{one-sided-criterion}
+Нека $f : D \to \mathbb{R}$ и $D \equiv (x_0 - \bar{\delta}, x_0 + \bar{\delta}) \setminus \{x_0\}$ за някое $\bar{\delta} > 0$ (такова $D$ се нарича още пробита околност на $x_0$). Твърдим, че $\lim_{x \to x_0} f(x)$ съществува точно тогава, когато съществуват $\lim_{x \to x_0^-} f(x)$ и $\lim_{x \to x_0^+} f(x)$ и те са равни.
+\end{theorem}
+
+\begin{proof}
+Правата посока е очевидна — наистина, ако съществува самата граница $\lim_{x \to x_0} f(x)$, то рестрикцията върху лява или дясна околност на $x_0$ няма да я промени, т.е. лявата или дясната граница ще съществуват и ще бъдат равни на първоначалната граница $L$ (а следователно и ще бъдат равни помежду си).
+
+Да разгледаме обратната посока. Нека съществуват $\lim_{x \to x_0^-} f(x) = L = \lim_{x \to x_0^+} f(x)$. Избираме произволно $\varepsilon > 0$. Тогава:
+\[
+\begin{cases}
+\lim_{x \to x_0^-} f(x) = L \implies \exists \delta_1 > 0 \; \forall x \in D \cap (x_0 - \delta_1, x_0) : |f(x) - L| < \varepsilon, \\
+\lim_{x \to x_0^+} f(x) = L \implies \exists \delta_2 > 0 \; \forall x \in D \cap (x_0, x_0 + \delta_2) : |f(x) - L| < \varepsilon.
+\end{cases}
+\]
+Полагаме $\delta := \min\{\delta_1, \delta_2, \bar{\delta}\}$. Тогава за всяко $x \in D$, $|x - x_0| < \delta$, $x \neq x_0$ имаме:
+\[
+\left.
+\begin{aligned}
+\text{Ако } x > x_0, \text{ то } x &\in (x_0, x_0 + \delta) \subset (x_0, x_0 + \delta_2) \cap D \\
+\text{Ако } x < x_0, \text{ то } x &\in (x_0 - \delta, x_0) \subset (x_0 - \delta_1, x_0) \cap D
+\end{aligned}
+\right\} \implies |f(x) - L| < \varepsilon.
+\]
+\end{proof}
+
+\noindent\textbf{Пример 5.4.} За кои стойности на реалния параметър $c$ функцията
+\[
+f(x) = \begin{cases}
+x^2 - 1, & x < 1 \\
+c - x, & x \ge 1
+\end{cases}
+\]
+има граница, когато аргументът клони към едно?
+
+Лесно се вижда, че:
+\begin{align*}
+\lim_{x \to 1^-} f(x) &= \lim_{x \to 1^-} (x^2 - 1) = \lim_{x \to 1^-} (x - 1)(x + 1) = 0, \\
+\lim_{x \to 1^+} f(x) &= \lim_{x \to 1^+} (c - x) = c - 1.
+\end{align*}
+За да съществува $\lim_{x \to 1} f(x)$, е необходимо (и достатъчно) да съществуват и да са равни лявата и дясната граница в точката $1$, т.е. $\lim_{x \to 1^-} f(x) = \lim_{x \to 1^+} f(x)$. Следователно $c - 1 = 0$ или $c = 1$.
+
+\section{Две основни граници}
+
+Дотук са ни известни едва няколко основни граници:
+\[
+\lim_{x \to x_0} x = x_0, \qquad \lim_{x \to x_0} c = c \text{ (константа)}, \qquad \lim_{x \to 0} \frac{\sin x}{x} = 1.
+\]
+За да разширим нашия запас от представителни примери, ще напомним кратко какво знаете за повдигането на степен от училище.
+
+И така, нека $a > 0$ и $n$ е естествено число. Означавали сте $a^n := \underbrace{a \cdot a \cdot \dots \cdot a}_{n}$. В такъв случай са в сила законите:
+\begin{enumerate}
+    \item $a^{m+n} = a^m a^n$
+    \item $(a^m)^n = a^{mn}$
+\end{enumerate}
+за всички $m, n \in \mathbb{N}$. След това сте разширили „повдигането на степен“ така, че вече степенният показател да може да бъде цяло число, и горните закони да остават в сила за всички $m, n \in \mathbb{Z}$. Единственият начин да бъде постигнато това е да се дефинира $a^0 := 1$ (от $a^n = a^{n+0} = a^n a^0$) и $a^{-n} := \frac{1}{a^n}$ (от $a^{-n} a^n = a^{n-n} = a^0 = 1$). Второто разширение, което сте направили в училище, е било да позволите степенният показател да бъде рационално число, и горните закони да останат в сила за всички $m, n \in \mathbb{Q}$. Постигнали сте това, като за $a > 0$ сте дефинирали $a^{m/n} := \sqrt[n]{a^m}$, където $m \in \mathbb{Z}$, $n \in \mathbb{N}$ (от $a^m = a^{\frac{m}{n} \cdot n} = \left( a^{\frac{m}{n}} \right)^n$). Единственото друго свойство на повдигането на степен, което ще ни е необходимо, е $a^x < a^y$ винаги, когато $a > 1$ и $x$ и $y$ са рационални числа с $x < y$.
+
+И тъй, засега приемаме, че от училище ви е известно значението на $y^x$, където $y > 0$ и $x \in \mathbb{Q}$. Прието е степента, разглеждана като функция $f(x) = a^x$ на степенния показател при фиксирана основа $a > 0$, да се нарича \textbf{експонента}, а степента, разглеждана като функция $g(x) = x^a$ на основата при фиксиран степенен показател, да се нарича \textbf{степенна функция}.
+
+Обръщаме се към доказателството на границите:
+\[
+\lim_{x \to 0} a^x = 1 \quad (a > 0), \qquad \lim_{x \to 0} (1 + x)^{\frac{1}{x}} = e.
+\]
+
+\medskip
+\noindent\textbf{1. Първо ще се занимаем със случая $\lim_{x \to 0} a^x = 1$ ($a > 0$).}
+
+Първо ще разгледаме случая, когато $a > 1$ и $x$ клони към нула със стойности, по-големи от нула.
+
+Да разгледаме редицата $\{b_n\}_{n=1}^{\infty}$ с общ член $b_n = a^{1/n} - 1$. За нея е в сила, че:
+\[
+a^{1/n} = b_n + 1,
+\]
+\[
+a = (b_n + 1)^n \overset{\text{Нютон}}{=} 1 + \binom{n}{1} b_n + \binom{n}{2} b_n^2 + \dots + \binom{n}{n} b_n^n.
+\]
+Очевидно е в сила неравенството $a > 1 + n b_n$, а оттам и $b_n < \frac{a - 1}{n}$. Прилагаме лемата за двамата полицаи към неравенствата:
+\[
+\underbrace{0}_{\xrightarrow[n \to \infty]{} 0} < b_n < \underbrace{\frac{a - 1}{n}}_{\xrightarrow[n \to \infty]{} 0} \implies \lim_{n \to \infty} b_n = 0.
+\]
+Сега нека $\varepsilon > 0$ е произволно. От $b_n \xrightarrow[n \to \infty]{} 0$ следва $\exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : |a^{1/n} - 1| < \varepsilon$.
+
+Тогава за всяко $x \in \mathbb{Q} \cap \left( 0, \frac{1}{n_0} \right)$ е в сила:
+\[
+0 < x < \frac{1}{n_0} \implies 1 < a^x < a^{1/n_0} \implies 0 < a^x - 1 < a^{1/n_0} - 1 < \varepsilon \implies
+\]
+\[
+\implies |a^x - 1| < \varepsilon \quad \forall x \in \mathbb{Q} \cap \left( 0, \frac{1}{n_0} \right).
+\]
+С това сме проверили, че $\lim_{x \to 0^+} a^x = 1$ в случая на $a > 1$. Да пресметнем лявата граница:
+\[
+\lim_{x \to 0^-} a^x \overset{y := -x}{=} \lim_{y \to 0^+} a^{-y} = \lim_{y \to 0^+} \frac{1}{a^y} = \frac{1}{1} = 1.
+\]
+Тъй като лявата граница и дясната граница съществуват и са равни, оттук получихме, че $\lim_{x \to 0} a^x = 1$, ако $a > 1$.
+
+Ако имаме $0 < a < 1$, то:
+\[
+\lim_{x \to 0} a^x = \lim_{x \to 0} \left( \frac{1}{a} \right)^{-x} \overset{y := -x}{=} \lim_{y \to 0} \left( \frac{1}{a} \right)^y = 1.
+\]
+Случаят $a = 1$ е тривиален, с което сме доказали, че $\lim_{x \to 0} a^x = 1$ за всяко $a > 0$.
+
+\begin{corollary}{Непрекъснатост на експоненциалната функция}{exp-continuity}
+За всяко $x_0 \in \mathbb{R}$ и $a > 0$:
+\[
+\lim_{x \to x_0} a^x = \lim_{x \to x_0} a^{x_0} \cdot a^{x - x_0} \overset{y := x - x_0}{=} a^{x_0} \lim_{y \to 0} a^y = a^{x_0} \cdot 1 = a^{x_0}.
+\]
+\end{corollary}
+
+\medskip
+\noindent\textbf{2. Ще докажем, че $\lim_{x \to 0} (1 + x)^{\frac{1}{x}} = e$.}
+
+В зависимост от това дали $x$ клони към нула с положителни или отрицателни стойности, разглеждаме следните случаи:
+
+\begin{itemize}
+    \item \textbf{$x$ клони към нула отдясно.} Нека $x \in (0, 1)$. Тогава можем да намерим $n \in \mathbb{N}$ такова, че:
+    \[
+    \frac{1}{n + 1} \le x \le \frac{1}{n} \implies n + 1 \ge \frac{1}{x} \ge n.
+    \]
+    Разглеждаме две редици $\{a_n\}_{n=1}^{\infty}$ и $\{b_n\}_{n=1}^{\infty}$, с които двустранно ще оценим функцията $(1 + x)^{1/x}$ в избрания интервал $\left[ \frac{1}{n+1}, \frac{1}{n} \right]$:
+    \begin{align*}
+    (1 + x)^{\frac{1}{x}} &\le \left( 1 + \frac{1}{n} \right)^{\frac{1}{x}} \le \left( 1 + \frac{1}{n} \right)^{n+1} =: a_n, \\
+    (1 + x)^{\frac{1}{x}} &\ge \left( 1 + \frac{1}{n+1} \right)^{\frac{1}{x}} \ge \left( 1 + \frac{1}{n+1} \right)^n =: b_n.
+    \end{align*}
+    Сега:
+    \[
+    \begin{cases}
+    \lim_{n \to \infty} a_n = \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n \left( 1 + \frac{1}{n} \right) = e \cdot 1 = e, \\
+    \lim_{n \to \infty} b_n = \lim_{n \to \infty} \frac{\left( 1 + \frac{1}{n+1} \right)^{n+1}}{1 + \frac{1}{n+1}} = \frac{e}{1 + 0} = e \cdot 1 = e.
+    \end{cases}
+    \]
+    Нека $\varepsilon > 0$ е произволно. От $a_n \xrightarrow[n \to \infty]{} e$ и $b_n \xrightarrow[n \to \infty]{} e$ следва, че $\exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : a_n \in (e - \varepsilon, e + \varepsilon)$, $b_n \in (e - \varepsilon, e + \varepsilon)$. Тогава за всяко $x$ с $0 < x < \frac{1}{n_0}$ съществува $n \ge n_0$, за което:
+    \[
+    \frac{1}{n+1} \le x \le \frac{1}{n} \implies b_n \le (1 + x)^{\frac{1}{x}} \le a_n \quad \text{за някое } n \ge n_0.
+    \]
+    Да заключим:
+    \[
+    e - \varepsilon < b_n \le (1 + x)^{\frac{1}{x}} \le a_n < e + \varepsilon \implies (1 + x)^{\frac{1}{x}} \in (e - \varepsilon, e + \varepsilon) \quad \forall x \in \mathbb{Q} \cap \left( 0, \frac{1}{n_0} \right).
+    \]
+    Следователно $\lim_{x \to 0^+} (1 + x)^{\frac{1}{x}} = e$.
+
+    \item \textbf{$x$ клони към нула отляво.} Ще сведем този случай към предишния, като започнем с полагане $y := -x$:
+    \[
+    \lim_{x \to 0^-} (1 + x)^{\frac{1}{x}} \overset{y := -x}{=} \lim_{y \to 0^+} (1 - y)^{-\frac{1}{y}} \quad (\text{когато } x \xrightarrow[x < 0]{} 0, \text{ тогава } y \xrightarrow[y > 0]{} 0),
+    \]
+    \[
+    \lim_{y \to 0^+} (1 - y)^{-\frac{1}{y}} = \lim_{y \to 0^+} \frac{1}{(1 - y)^{\frac{1}{y}}} = \lim_{y \to 0^+} \left( \frac{1}{1 - y} \right)^{\frac{1}{y}} = \lim_{y \to 0^+} \left( 1 + \frac{y}{1 - y} \right)^{\frac{1}{y}}.
+    \]
+    Извършваме ново полагане $z := \frac{y}{1 - y}$ (самостоятелно проверете, че в такъв случай $y = \frac{z}{z + 1}$):
+    \[
+    \lim_{y \to 0^+} \left( 1 + \frac{y}{1 - y} \right)^{\frac{1}{y}} = \lim_{z \to 0^+} (1 + z)^{\frac{z+1}{z}} \quad (\text{когато } y \xrightarrow[y > 0]{} 0, \text{ тогава } z \xrightarrow[z > 0]{} 0),
+    \]
+    \[
+    \lim_{z \to 0^+} (1 + z)^{\frac{z+1}{z}} = \lim_{z \to 0^+} (1 + z)^{1 + \frac{1}{z}} = \lim_{z \to 0^+} (1 + z)(1 + z)^{\frac{1}{z}} = 1 \cdot e = e.
+    \]
+\end{itemize}

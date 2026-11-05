@@ -1,0 +1,318 @@
+% =========================================================================
+% ДИС 1 – Упражнение (12 октомври)
+% Тема: Обратимост на функции, обратни тригонометрични функции
+% =========================================================================
+
+\section{Упражнение - 12 октомври 2026 г.}
+
+\begin{problembox}{Задача 1}
+Да се изследва за обратимост функцията:
+\[
+f(x) = \frac{3^x - 2^x}{3^x + 2^x}
+\]
+и ако е обратима, да се намери нейната обратна функция $f^{-1}$.
+\end{problembox}
+
+\begin{solution}
+\textbf{1. Дефиниционно множество:}
+Тъй като $3^x > 0$ и $2^x > 0$ за всяко $x \in \mathbb{R}$, знаменателят никога не се анулира:
+\[
+D_f = \mathbb{R}.
+\]
+
+\textbf{2. Изразяване на $x$ чрез $y$:}
+Полагаме $y = f(x)$ и решаваме спрямо $x$:
+\[
+y = \frac{3^x - 2^x}{3^x + 2^x} \iff y(3^x + 2^x) = 3^x - 2^x
+\]
+\[
+3^x y + 2^x y = 3^x - 2^x \iff 3^x(y - 1) + 2^x(y + 1) = 0.
+\]
+Тъй като $2^x > 0$, делим двете страни на $2^x$:
+\[
+\left(\frac{3}{2}\right)^x (y - 1) + (y + 1) = 0 \iff \left(\frac{3}{2}\right)^x = \frac{y + 1}{1 - y}.
+\]
+
+\textbf{3. Множество от стойности и инективност:}
+Понеже показателната функция приема само строго положителни стойности, изискваме:
+\[
+\frac{y + 1}{1 - y} > 0.
+\]
+Откъдето намираме:
+\[
+y \in (-1, 1).
+\]
+За всяко $y \in (-1, 1)$ съществува единствено решение за $x$:
+\[
+x = \log_{3/2}\left(\frac{1 + y}{1 - y}\right).
+\]
+Следователно функцията $f$ е инективна и задава биекция $f: \mathbb{R} \to (-1, 1)$, откъдето следва, че е обратима:
+\[
+f^{-1}: (-1, 1) \to \mathbb{R}, \quad f^{-1}(y) = \log_{3/2}\left(\frac{1 + y}{1 - y}\right).
+\]
+\end{solution}
+
+\vspace{1em}
+
+\begin{problembox}{Задача 2}
+Да се изследва за обратимост функцията:
+\[
+f(x) = \frac{|x|}{2 + |x|}, \quad x \in \mathbb{R}.
+\]
+Ако не е обратима, да се намери интервал, в който тя е обратима, и да се определи $f^{-1}$.
+\end{problembox}
+
+\begin{solution}
+\textbf{1. Върху цялото дефиниционно множество $\mathbb{R}$:}
+Тъй като $|-1| = |1| = 1$, имаме:
+\[
+f(-1) = f(1) = \frac{1}{2 + 1} = \frac{1}{3}.
+\]
+От $f(-1) = f(1)$ при $-1 \neq 1$ следва, че $f$ не е инективна, следователно \textbf{не е обратима} върху $\mathbb{R}$.
+
+\textbf{2. Стеснение върху $[0, +\infty)$:}
+Нека $x \in [0, +\infty)$. Тогава $|x| = x$ и:
+\[
+f(x) = \frac{x}{2 + x}.
+\]
+Полагаме $y = \frac{x}{2 + x}$ и изразяваме $x$:
+\[
+y(2 + x) = x \iff 2y + yx = x \iff (y - 1)x = -2y \iff x = \frac{2y}{1 - y}.
+\]
+Изискваме $x \ge 0$:
+\[
+\frac{2y}{1 - y} \ge 0.
+\]
+Получаваме:
+\[
+y \in [0, 1) =: A_1.
+\]
+Следователно стеснението $f: [0, +\infty) \to [0, 1)$ е биекция и е обратимо с обратна функция:
+\[
+f^{-1}: [0, 1) \to [0, +\infty), \quad f^{-1}(y) = \frac{2y}{1 - y}.
+\]
+\textit{Забележка:} Аналогично стеснение може да се разгледа и върху интервала $(-\infty, 0]$.
+\end{solution}
+
+\vspace{1em}
+
+\begin{problembox}{Задача 3}
+Да се изследва за обратимост функцията:
+\[
+f(x) = \frac{x - 1}{2 + |x|}, \quad x \in \mathbb{R}.
+\]
+\end{problembox}
+
+\begin{solution}
+Разкриваме модула по дефиниция:
+\[
+f(x) = 
+\begin{cases}
+\dfrac{x - 1}{2 - x}, & x \le 0, \\[8pt]
+\dfrac{x - 1}{2 + x}, & x > 0.
+\end{cases}
+\]
+
+\textbf{Случай 1:} $x \in (-\infty, 0]$.
+\[
+y = \frac{x - 1}{2 - x} \iff (2 - x)y = x - 1 \iff 2y - xy = x - 1 \iff x(y + 1) = 2y + 1 \iff x = \frac{2y + 1}{y + 1}.
+\]
+Условието $x \le 0$ дава:
+\[
+\frac{2y + 1}{y + 1} \le 0.
+\]
+Оттук:
+\[
+y \in \left(-1, -\frac{1}{2}\right] =: A_1.
+\]
+
+\textbf{Случай 2:} $x \in (0, +\infty)$.
+\[
+y = \frac{x - 1}{2 + x} \iff (2 + x)y = x - 1 \iff 2y + xy = x - 1 \iff x(y - 1) = -(2y + 1) \iff x = \frac{2y + 1}{1 - y}.
+\]
+Условието $x > 0$ дава:
+\[
+\frac{2y + 1}{1 - y} > 0.
+\]
+Оттук:
+\[
+y \in \left(-\frac{1}{2}, 1\right) =: A_2.
+\]
+
+\textbf{Извод за обратимост:}
+Тъй като във всеки клон $x$ се определя еднозначно, а образите им не се пресичат:
+\[
+A_1 \cap A_2 = \left(-1, -\frac{1}{2}\right] \cap \left(-\frac{1}{2}, 1\right) = \emptyset,
+\]
+функцията $f$ е инективна върху цялото $\mathbb{R}$. Множеството от стойности е $f(\mathbb{R}) = A_1 \cup A_2 = (-1, 1)$, откъдето обратната функция е:
+\[
+f^{-1}: (-1, 1) \to \mathbb{R}, \quad f^{-1}(y) = 
+\begin{cases}
+\dfrac{2y + 1}{y + 1}, & y \in \left(-1, -\frac{1}{2}\right], \\[10pt]
+\dfrac{2y + 1}{1 - y}, & y \in \left(-\frac{1}{2}, 1\right).
+\end{cases}
+\]
+\end{solution}
+
+\vspace{1em}
+
+\begin{problembox}{Задача 4}
+Нека $f: \mathbb{R} \to \mathbb{R}$ е строго растяща функция.
+Да се докаже, че $f$ е обратима върху образа си $f(\mathbb{R})$ и че обратната функция $f^{-1}$ също е строго растяща.
+\end{problembox}
+
+\begin{solution}
+\textbf{1. Обратимост (инективност):}
+Допускаме противното, че съществуват $x_1 \neq x_2$, за които $f(x_1) = f(x_2)$.
+Без ограничение на общността нека $x_1 < x_2$. Понеже $f$ е строго растяща, следва:
+\[
+f(x_1) < f(x_2),
+\]
+което противоречи на $f(x_1) = f(x_2)$.
+Следователно $f$ е инективна, откъдето съществува обратна функция $f^{-1}: f(\mathbb{R}) \to \mathbb{R}$.
+
+\textbf{2. Строга монотонност на $f^{-1}$:}
+Понеже $f$ е строго растяща, за всеки $x_1, x_2 \in \mathbb{R}$ имаме:
+\[
+x_1 < x_2 \iff f(x_1) < f(x_2).
+\]
+За произволни $y_1, y_2 \in f(\mathbb{R})$ полагаме $x_1 = f^{-1}(y_1)$ и $x_2 = f^{-1}(y_2)$. Като приложим еквивалентността, получаваме:
+\[
+f^{-1}(y_1) < f^{-1}(y_2) \iff f(f^{-1}(y_1)) < f(f^{-1}(y_2)) \iff y_1 < y_2.
+\]
+Следователно $f^{-1}$ е строго растяща функция.
+\end{solution}
+
+\vspace{1em}
+
+\vspace{1em}
+
+При изрази от вида $a\sin x + b\cos x$ се използва:
+\[
+a\sin x + b\cos x = \sqrt{a^2 + b^2}\left(\frac{a}{\sqrt{a^2 + b^2}}\sin x + \frac{b}{\sqrt{a^2 + b^2}}\cos x\right) = \sqrt{a^2 + b^2}\sin(x + \varphi),
+\]
+където $\cos\varphi = \frac{a}{\sqrt{a^2 + b^2}}$ и $\sin\varphi = \frac{b}{\sqrt{a^2 + b^2}}$.
+В частност:
+\[
+\sin x + \cos x = \sqrt{2}\left(\frac{\sin x}{\sqrt{2}} + \frac{\cos x}{\sqrt{2}}\right) = \sqrt{2}\sin\left(x + \frac{\pi}{4}\right).
+\]
+
+\vspace{1em}
+
+\begin{problembox}{Задача 5}
+Да се докаже равенството:
+\[
+\arcsin(-x) = -\arcsin x, \quad \forall x \in [-1, 1].
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \arcsin(-x)$. По дефиниция на аркуссинус:
+\[
+\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] \quad \text{и} \quad \sin \alpha = -x.
+\]
+Умножаваме по $-1$:
+\[
+-\sin \alpha = x \iff \sin(-\alpha) = x.
+\]
+Тъй като $\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, то и $-\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$. Следователно по дефиниция:
+\[
+-\alpha = \arcsin x \iff \alpha = -\arcsin x.
+\]
+Като заместим първоначалното полагане, получаваме:
+\[
+\arcsin(-x) = -\arcsin x.
+\]
+\end{solution}
+
+\vspace{1em}
+
+\begin{problembox}{Задача 6}
+Да се докаже, че за всяко $x \in [-1, 1]$ е в сила:
+\[
+\arcsin x + \arccos x = \frac{\pi}{2}.
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме:
+\[
+\alpha = \arcsin x \implies \alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] \quad \text{и} \quad \sin \alpha = x,
+\]
+\[
+\beta = \arccos x \implies \beta \in [0, \pi] \quad \text{и} \quad \cos \beta = x.
+\]
+Трябва да докажем, че $\alpha + \beta = \frac{\pi}{2}$, което е еквивалентно на $\alpha = \frac{\pi}{2} - \beta$.
+
+От $\beta \in [0, \pi]$ следва:
+\[
+-\beta \in [-\pi, 0] \implies \frac{\pi}{2} - \beta \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right].
+\]
+Пресмятаме синуса от дясната страна:
+\[
+\sin\left(\frac{\pi}{2} - \beta\right) = \cos \beta = x = \sin \alpha.
+\]
+Тъй като функцията $\sin$ е строго растяща (и следователно инективна) в интервала $\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, и понеже $\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ и $\left(\frac{\pi}{2} - \beta\right) \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, от равенството на техните синуси следва:
+\[
+\alpha = \frac{\pi}{2} - \beta \iff \alpha + \beta = \frac{\pi}{2}.
+\]
+\end{solution}
+
+\vspace{1em}
+
+\begin{problembox}{Задача 7}
+Да се докаже, че:
+\[
+\arcsin(\sin \alpha) = \pi - \alpha \quad \text{за всяко } \alpha \in \left[\frac{\pi}{2}, \frac{3\pi}{2}\right].
+\]
+\end{problembox}
+
+\begin{solution}
+От $\alpha \in \left[\frac{\pi}{2}, \frac{3\pi}{2}\right]$ следва:
+\[
+-\alpha \in \left[-\frac{3\pi}{2}, -\frac{\pi}{2}\right] \implies \pi - \alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right].
+\]
+От формулата за редукция знаем, че:
+\[
+\sin(\pi - \alpha) = \sin \alpha.
+\]
+Понеже $\pi - \alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ попада в интервала на основните стойности на $\arcsin$, можем директно да приложим функцията:
+\[
+\arcsin(\sin \alpha) = \arcsin(\sin(\pi - \alpha)) = \pi - \alpha.
+\]
+\end{solution}
+
+\vspace{2em}
+
+% =========================================================================
+% Задачи за домашно
+% =========================================================================
+\subsection*{Задачи за домашно}
+
+\begin{problembox}{Задача 8 (Домашно)}
+Да се изследва за обратимост функцията:
+\[
+f(x) = \cos\left(\frac{x^2}{x^2 + 1}\right), \quad x \in \mathbb{R}.
+\]
+\end{problembox}
+
+\begin{problembox}{Задача 9 (Домашно)}
+Да се пресметне:
+\[
+\arcsin\left(\sin\left(\frac{2017}{7}\pi\right)\right) = ?
+\]
+\end{problembox}
+
+\begin{problembox}{Задача 10 (Домашно)}
+Да се докаже, че за всяко $x \in [-1, 1]$ е в сила:
+\[
+\arccos(-x) = \pi - \arccos x.
+\]
+\end{problembox}
+
+\begin{problembox}{Задача 11 (Домашно)}
+Да се докаже, че за всяко $x \in [-1, 1]$ е в сила:
+\[
+\cos(\arcsin x) = \sqrt{1 - x^2}.
+\]
+\end{problembox}

@@ -1,0 +1,370 @@
+\section*{Лекция 03 - 21 октомври}
+
+Припомняме свойствата на сходящите редици от реални числа, с които се занимахме в края на предишната лекция:
+
+\begin{enumerate}
+    \item Прибавянето или задраскването на краен брой членове на редицата не влияе на сходимостта (и на границата).
+    \item Сходящите редици са ограничени, т.е. ако редицата $\{a_n\}_{n=1}^{\infty}$ е сходяща, то множеството $\{a_n : n \in \mathbb{N}\}$ е ограничено.
+    \item Нека $a_n \xrightarrow[n\to\infty]{} a$, $b_n \xrightarrow[n\to\infty]{} b$ и $a_n \le b_n$ за всяко $n \in \mathbb{N}$. Тогава $a \le b$.
+\end{enumerate}
+
+\begin{corollary}{Единственост на границата}{unique_limit}
+Ако една редица е сходяща, то нейната граница е единствена.
+\end{corollary}
+
+\begin{lemma}{Лема за двамата полицаи}{two_policemen}
+Нека $a_n \le c_n \le b_n$ за всяко $n \in \mathbb{N}$. Ако $a_n \xrightarrow[n\to\infty]{} a$ и $b_n \xrightarrow[n\to\infty]{} a$, то $\{c_n\}_{n=1}^{\infty}$ е сходяща и $c_n \xrightarrow[n\to\infty]{} a$.
+\end{lemma}
+
+Последната лема е изключително често употребявана, както постепенно ще се убедите. Веднага ще отбележим само следното
+
+\begin{corollary}{Произведение на безкрайно малка и ограничена редица}{null_times_bounded}
+Ако $a_n \xrightarrow[n\to\infty]{} 0$ и $\{b_n\}_{n=1}^{\infty}$ е ограничена, то $a_n \cdot b_n \xrightarrow[n\to\infty]{} 0$.
+\end{corollary}
+
+\begin{proof}
+$\{b_n\}_{n=1}^{\infty}$ е ограничена $\implies \exists M > 0 \; \forall n \in \mathbb{N} : |b_n| \le M$. Ползваме, че
+\[
+a_n \cdot b_n \xrightarrow[n\to\infty]{} 0 \iff |a_n \cdot b_n - 0| \xrightarrow[n\to\infty]{} 0.
+\]
+Разглеждаме веригата от неравенства:
+\[
+0 \le |a_n \cdot b_n| \le |a_n| \cdot |b_n| \le M|a_n|.
+\]
+Ако докажем, че $M|a_n| \xrightarrow[n\to\infty]{} 0$ (защото $a_n \xrightarrow[n\to\infty]{} 0$), резултатът следва от лемата за двамата полицаи. Нека $\varepsilon > 0$ е произволно. Тогава от $\frac{\varepsilon}{M} > 0$ и $a_n \xrightarrow[n\to\infty]{} 0$ следва, че
+\[
+\left\{n : |a_n| < \frac{\varepsilon}{M}\right\} = \{n : M|a_n| < \varepsilon\} \quad \text{-- кофинитно},
+\]
+с което $M|a_n| \xrightarrow[n\to\infty]{} 0$ е доказано.
+\end{proof}
+
+\paragraph{Пример 1.3.}
+\[
+\frac{1}{n} \sin\left(\frac{1}{n^2}\right) \xrightarrow[n\to\infty]{} 0
+\]
+
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item Ако $a_n \xrightarrow[n\to\infty]{} a$ и $b_n \xrightarrow[n\to\infty]{} b$, то $a_n + b_n \xrightarrow[n\to\infty]{} a + b$.
+\end{enumerate}
+
+\begin{proof}
+Имаме $|(a_n + b_n) - (a + b)| = |(a_n - a) + (b_n - b)| \le |a_n - a| + |b_n - b|$. Сега за произволно $\varepsilon > 0$:
+\[
+\begin{cases}
+a_n \xrightarrow[n\to\infty]{} a \implies \exists n_1 \in \mathbb{N} \; \forall n \ge n_1 : |a_n - a| < \frac{\varepsilon}{2} \\
+b_n \xrightarrow[n\to\infty]{} b \implies \exists n_2 \in \mathbb{N} \; \forall n \ge n_2 : |b_n - b| < \frac{\varepsilon}{2}
+\end{cases}
+\]
+Ако означим $n_0 = \max\{n_1, n_2\}$, то:
+\[
+\forall n \ge n_0 : |(a_n + b_n) - (a + b)| \le |a_n - a| + |b_n - b| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+Показахме, че $\forall \varepsilon > 0 \; \exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : |(a_n + b_n) - (a + b)| < \varepsilon$.
+\end{proof}
+
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item Ако $a_n \xrightarrow[n\to\infty]{} a$ и $b_n \xrightarrow[n\to\infty]{} b$, то $a_n \cdot b_n \xrightarrow[n\to\infty]{} ab$.
+\end{enumerate}
+
+\begin{proof}
+Тъй като $b_n \xrightarrow[n\to\infty]{} b$, то $\{b_n\}_{n=1}^{\infty}$ е ограничена според свойство 2, и следователно съществува $M > 0$ такова, че $|b_n| \le M$ за всички $n \in \mathbb{N}$. Тогава:
+\begin{align*}
+0 \le |a_n b_n - ab| &= |a_n b_n - a b_n + a b_n - ab| = |(a_n - a)b_n + a(b_n - b)| \\
+&\le |a_n - a||b_n| + |a||b_n - b| \le M|a_n - a| + |a||b_n - b|.
+\end{align*}
+Да фиксираме $\varepsilon > 0$ произволно. От $a_n \xrightarrow[n\to\infty]{} a$ получаваме, че
+\[
+\exists n_1 \in \mathbb{N} \; \forall n \ge n_1 : |a_n - a| < \frac{\varepsilon}{2M},
+\]
+а от $b_n \xrightarrow[n\to\infty]{} b$ получаваме, че
+\[
+\exists n_2 \in \mathbb{N} \; \forall n \ge n_2 : |b_n - b| < \frac{\varepsilon}{2(|a| + 1)}.
+\]
+Тогава за всяко $n \ge n_0 = \max\{n_1, n_2\}$ имаме:
+\[
+|a_n b_n - ab| \le M|a_n - a| + |a||b_n - b| < M \cdot \frac{\varepsilon}{2M} + |a| \cdot \frac{\varepsilon}{2(|a| + 1)} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+\]
+с което доказателството е завършено. Да отбележим, че разделихме на $|a| + 1$, за да не разглеждаме отделно случая, когато $a = 0$.
+\end{proof}
+
+\begin{corollary}{Умножение с константа}{mult_by_constant}
+Ако $c \in \mathbb{R}$ и $a_n \xrightarrow[n\to\infty]{} a$, то $c \cdot a_n \xrightarrow[n\to\infty]{} ca$. (Забележете, че $\forall c \in \mathbb{R}$ редицата $\{c\}_{n=1}^{\infty}$ е сходяща и $c, c, c, \dots, c, \dots \xrightarrow[n\to\infty]{} c$).
+\end{corollary}
+
+\begin{corollary}{Разлика на сходящи редици}{diff_sequences}
+Ако $a_n \xrightarrow[n\to\infty]{} a$ и $b_n \xrightarrow[n\to\infty]{} b$, то $a_n - b_n \xrightarrow[n\to\infty]{} a - b$. (Следва непосредствено от Следствие~\ref{cor:mult_by_constant} и Свойство 5).
+\end{corollary}
+
+\begin{theorem}{Граница на частно}{limit_of_quotient}
+Ако $a_n \xrightarrow[n\to\infty]{} a$ и $b_n \xrightarrow[n\to\infty]{} b$, където $b \ne 0$, то $\frac{a_n}{b_n} \xrightarrow[n\to\infty]{} \frac{a}{b}$.
+\end{theorem}
+
+\begin{proof}
+Първо да се убедим, че редицата от частните е добре дефинирана за почти всички индекси. Наистина, ако $b > 0$, то $(0, +\infty)$ е околност на $b$ и тогава множеството $\{n \in \mathbb{N} : b_n > 0\}$ е кофинитно. Ако $b < 0$, то $(-\infty, 0)$ е околност на $b$ и съответно $\{n \in \mathbb{N} : b_n < 0\}$ е кофинитно. При всички положения $\{n \in \mathbb{N} : b_n \ne 0\}$ е кофинитно. Оценяваме:
+\begin{align*}
+\left|\frac{a_n}{b_n} - \frac{a}{b}\right| &= \left|\frac{a_n b - a b_n}{b_n b}\right| = \left|\frac{a_n b - ab + ab - a b_n}{b_n b}\right| \\
+&= \left|\frac{(a_n - a)b + a(b - b_n)}{b_n b}\right| \le \frac{|a_n - a|}{|b_n|} + \frac{|a|}{|b_n||b|}|b_n - b|.
+\end{align*}
+Сега по подобен начин като в началото забелязваме, че ако $b > 0$, то $(|b|/2, +\infty)$ е околност на $b$ и тогава множеството $\{n \in \mathbb{N} : b_n > |b|/2\}$ е кофинитно. Ако $b < 0$, то $(-\infty, -|b|/2)$ е околност на $b$ и съответно $\{n \in \mathbb{N} : b_n < -|b|/2\}$ е кофинитно. И в двата случая можем да запишем, че съществува $n_0 \in \mathbb{N}$ такова, че за всички $n \ge n_0$ е изпълнено $|b_n| > \frac{|b|}{2}$. Следователно, използвайки горната оценка, имаме:
+\[
+\left|\frac{a_n}{b_n} - \frac{a}{b}\right| \le \frac{|a_n - a|}{|b_n|} + \frac{|a|}{|b_n||b|}|b_n - b| \le \frac{2}{|b|}|a_n - a| + \frac{2|a|}{|b|^2}|b_n - b| \xrightarrow[n\to\infty]{} 0.
+\]
+Получихме, че дясната страна клони към нула като следствие от Свойство 5 и Следствие~\ref{cor:mult_by_constant}.
+\end{proof}
+
+Проверили сме, че $c, c, c, \dots, c, \dots \xrightarrow[n\to\infty]{} c$ за всяко $c \in \mathbb{R}$, както и че $\frac{1}{n} \xrightarrow[n\to\infty]{} 0$. Оттук с помощта на току-що доказаните свойства лесно се пресмятат граници например на частно на два полинома на $n$, ако степента на числителя не надминава степента на знаменателя. Примери сте виждали достатъчно както в училище, така и на упражнения. Ето един по-интересен пример:
+
+\paragraph{Пример 1.6.}
+Да разгледаме редицата, която се задава с правилото:
+\[
+a_n = \underbrace{\frac{n}{n^2 + 1}}_{\text{най-голямо събираемо}} + \frac{n}{n^2 + 2} + \dots + \underbrace{\frac{n}{n^2 + n}}_{\text{най-малко събираемо}} = \sum_{i=1}^n \frac{n}{n^2 + i}.
+\]
+Ясно е, че $a_n$ се ограничава отдолу от най-малкото събираемо, събрано със себе си $n$ пъти; също така $a_n$ се ограничава отгоре от най-голямото събираемо, събрано със себе си $n$ пъти. Следователно:
+\[
+n \cdot \frac{n}{n^2 + n} \le a_n \le n \cdot \frac{n}{n^2 + 1} \implies \underbrace{\frac{1}{1 + \frac{1}{n}}}_{\xrightarrow[n\to\infty]{} 1} \le a_n \le \underbrace{\frac{1}{1 + \frac{1}{n^2}}}_{\xrightarrow[n\to\infty]{} 1}.
+\]
+Виждаме, че като изнесем най-голямата обща степен пред скоби и съкратим (в случая $n^2$), получаваме редици, които клонят към 1 -- това може лесно да се установи с гореприведените свойства. От лемата за двамата полицаи можем да заключим, че
+\[
+a_n \xrightarrow[n\to\infty]{} 1.
+\]
+
+\section{Редици, които дивергират към безкрайност}
+
+Добре е да отделим един клас разходящи редици, чието поведение е „определено“ в някакъв смисъл. Това са редиците, които дивергират към безкрайност.
+
+\begin{definition}{Околност на $+\infty$}{neighborhood_plus_inf}
+$U \subset \mathbb{R}$ се нарича околност на $+\infty$, ако съществува $M \in \mathbb{R}$ такова, че $(M, +\infty) \subset U$.
+\end{definition}
+
+\begin{definition}{Околност на $-\infty$ и дивергенция към $\pm\infty$}{neighborhood_minus_inf}
+$U \subset \mathbb{R}$ се нарича околност на $-\infty$, ако съществува $M \in \mathbb{R}$ такова, че $(-\infty, M) \subset U$.
+
+Ще казваме, че редицата $\{a_n\}_{n=1}^{\infty}$ дивергира към $+\infty$ (и ще пишем $a_n \xrightarrow[n\to\infty]{} +\infty$), ако $\{a_n\}_{n=1}^{\infty}$ е почти изцяло във всяка околност на $+\infty$. Аналогично, казваме, че редицата $\{a_n\}_{n=1}^{\infty}$ дивергира към $-\infty$ ($a_n \xrightarrow[n\to\infty]{} -\infty$), ако $\{a_n\}_{n=1}^{\infty}$ е почти изцяло във всяка околност на $-\infty$. Формално:
+\begin{align*}
+a_n \xrightarrow[n\to\infty]{} +\infty &\iff \forall U \text{ -- околност на } +\infty : \{n \in \mathbb{N} : a_n \in U\} \text{ е кофинитно} \\
+&\iff \forall M \in \mathbb{R} : \{n \in \mathbb{N} : a_n \in (M, +\infty)\} \text{ е кофинитно} \\
+&\iff \forall M \in \mathbb{R} \; \exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : a_n > M.
+\end{align*}
+Аналогично:
+\begin{align*}
+a_n \xrightarrow[n\to\infty]{} -\infty &\iff \forall U \text{ -- околност на } -\infty : \{n \in \mathbb{N} : a_n \in U\} \text{ е кофинитно} \\
+&\iff \forall M \in \mathbb{R} : \{n \in \mathbb{N} : a_n \in (-\infty, M)\} \text{ е кофинитно} \\
+&\iff \forall M \in \mathbb{R} \; \exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : a_n < M.
+\end{align*}
+\end{definition}
+
+\begin{definition}{Околност на $\infty$ и дивергенция към $\infty$}{neighborhood_inf}
+$U \subset \mathbb{R}$ се нарича околност на $\infty$, ако съществува $M > 0$ такова, че $U \supset [(-\infty, -M) \cup (M, +\infty)]$.
+
+Отново редицата $\{a_n\}_{n=1}^{\infty}$ дивергира към $\infty$ ($a_n \xrightarrow[n\to\infty]{} \infty$), ако:
+\begin{align*}
+a_n \xrightarrow[n\to\infty]{} \infty &\iff \forall U \text{ -- околност на } \infty : \{n \in \mathbb{N} : a_n \notin U\} \text{ е крайно} \\
+&\iff \forall M \in \mathbb{R} \; \exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : |a_n| > M.
+\end{align*}
+\end{definition}
+
+\begin{theorem}{Връзка между безкрайни и безкрайно малки редици}{infinite_limits_reciprocal}
+Нека $\{a_n\}_{n=1}^{\infty} \subset \mathbb{R}$.
+\begin{enumerate}
+    \item Ако $a_n > 0$ за всяко $n \in \mathbb{N}$, то $\left[ a_n \xrightarrow[n\to\infty]{} +\infty \iff \frac{1}{a_n} \xrightarrow[n\to\infty]{} 0 \right]$.
+    \item Ако $a_n < 0$ за всяко $n \in \mathbb{N}$, то $\left[ a_n \xrightarrow[n\to\infty]{} -\infty \iff \frac{1}{a_n} \xrightarrow[n\to\infty]{} 0 \right]$.
+    \item Ако $a_n \ne 0$ за всяко $n \in \mathbb{N}$, то $\left[ a_n \xrightarrow[n\to\infty]{} \infty \iff \frac{1}{a_n} \xrightarrow[n\to\infty]{} 0 \right]$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Ще докажем само третата част, като другите се разглеждат съвсем аналогично. Доказателството се извършва в двете посоки:
+
+($\implies$) Имаме $a_n \ne 0$ за всяко $n \in \mathbb{N}$ и $a_n \xrightarrow[n\to\infty]{} \infty$. Искаме $\forall \varepsilon > 0 \; \exists n_0 \in \mathbb{N} \; \forall n \ge n_0 : \left|\frac{1}{a_n} - 0\right| < \varepsilon$. Фиксираме произволно $\varepsilon > 0$ и търсим да покажем, че $|a_n| > \frac{1}{\varepsilon}$ за всички достатъчно големи индекси. Тъй като $a_n \xrightarrow[n\to\infty]{} \infty$ и $\left(-\infty, -\frac{1}{\varepsilon}\right) \cup \left(\frac{1}{\varepsilon}, +\infty\right)$ е околност на $\infty$, съществува $n_0 \in \mathbb{N}$ такова, че за всяко $n \ge n_0$ е в сила $|a_n| > \frac{1}{\varepsilon}$. Желаното неравенство следва директно.
+
+($\impliedby$) Сега имаме $\frac{1}{a_n} \xrightarrow[n\to\infty]{} 0$ и искаме да проверим, че $a_n \xrightarrow[n\to\infty]{} \infty$. Разглеждаме произволно $M > 0$. Тогава $\frac{1}{M} > 0$ и $\frac{1}{a_n} \xrightarrow[n\to\infty]{} 0$ влече съществуването на $n_0 \in \mathbb{N}$ такова, че за всички $n \ge n_0$ е в сила $\left|\frac{1}{a_n}\right| < \frac{1}{M}$. Това е еквивалентно на $|a_n| > M$ за всяко $n \ge n_0$ -- точно дефиницията на $a_n \xrightarrow[n\to\infty]{} \infty$.
+\end{proof}
+
+\paragraph{Пример 2.5.}
+С помощта на току-що доказаното твърдение лесно се вижда например, че:
+\[
+\lim_{n\to\infty} \frac{3n^5 - n^2 - 3}{n^4 + n + 1} = \infty,
+\]
+тъй като за реципрочното е в сила:
+\[
+\lim_{n\to\infty} \frac{n^4 + n + 1}{3n^5 - n^2 - 3} = \lim_{n\to\infty} \frac{1}{n} \cdot \frac{1 + \frac{1}{n^3} + \frac{1}{n^4}}{3 - \frac{1}{n^3} - \frac{3}{n^5}} = 0.
+\]
+
+\section{Монотонни редици}
+
+Сега се съсредоточаваме върху един друг клас редици, за който много от разглежданията се опростяват значително.
+
+\begin{definition}{Растяща и намаляваща редица}{monotone_seq}
+Нека $\{a_n\}_{n=1}^{\infty} \subset \mathbb{R}$ е редица от реални числа.
+\begin{itemize}
+    \item Ако $a_{n+1} \ge a_n$ за всяко $n \in \mathbb{N}$, редицата се нарича \textbf{растяща}.
+    \item Ако $a_{n+1} \le a_n$ за всяко $n \in \mathbb{N}$, редицата се нарича \textbf{намаляваща}.
+    \item \textbf{Монотонна редица} е тази, която е намаляваща или растяща.
+    \item Ако неравенствата са строги, говорим за \textbf{строго растяща} или \textbf{строго намаляваща} редица.
+\end{itemize}
+Забележете, че една редица е едновременно растяща и намаляваща точно тогава, когато е стационарна.
+\end{definition}
+
+Важно е да осъзнаете, че следващото просто твърдение зависи от принципа за непрекъснатост (всъщност му е еквивалентно):
+
+\begin{theorem}{Сходимост на монотонна редица}{monotone_convergence}
+Нека $\{a_n\}_{n=1}^{\infty} \subset \mathbb{R}$ е редица от реални числа. Ако $\{a_n\}_{n=1}^{\infty}$ е растяща и ограничена отгоре, то тя е сходяща. Аналогично, ако $\{a_n\}_{n=1}^{\infty}$ е намаляваща и ограничена отдолу, то тя е сходяща.
+\end{theorem}
+
+\begin{proof}
+Ще докажем само първата част на твърдението, като за втората се разсъждава по съвсем сходен начин.
+
+И така, $\{a_n\}_{n=1}^{\infty}$ е растяща, т.е. $a_{n+1} \ge a_n$ за всяко $n \in \mathbb{N}$. Тъй като редицата е ограничена отгоре, от принципа за непрекъснатост следва, че съществува супремум на множеството $\{a_n : n \in \mathbb{N}\}$, да го означим с $L$. За произволно $\varepsilon > 0$:
+\[
+L - \varepsilon < L = \sup \{a_n : n \in \mathbb{N}\} \implies \exists n_0 \in \mathbb{N} : a_{n_0} > L - \varepsilon.
+\]
+Използвахме, че няма горни граници за редицата, по-малки от $L$. Нека $n \ge n_0$. Тогава:
+\[
+L - \varepsilon < a_{n_0} \le a_n \le L < L + \varepsilon.
+\]
+Второто неравенство идва от факта, че редицата е растяща, а третото -- от това, че $L$ е горна граница за редицата. Следователно $a_n \in (L - \varepsilon, L + \varepsilon)$ за всяко $n \ge n_0$. Тъй като $\varepsilon > 0$ беше произволно, получихме, че $a_n \xrightarrow[n\to\infty]{} L$.
+
+Интуитивно е ясно, че ако всеки следващ член на редицата е по-голям от предходния, при това тя е ограничена отгоре, то именно точната горна граница е граница и за редицата. С доказателството ние формализирахме тази интуиция.
+\end{proof}
+
+\paragraph{Пример 3.3 (Геометрична прогресия).}
+За $q \in \mathbb{R}$ и $n \in \mathbb{N}$ разглеждаме редицата $q, q^2, q^3, \dots, q^n, \dots$. Съществуват следните възможности:
+\begin{itemize}
+    \item $0 \le q < 1$. Тогава $q^n \xrightarrow[n\to\infty]{} 0$.
+    
+    Действително, при тези стойности на $q$ редицата е намаляваща (даже строго) и е ограничена отдолу (например от нулата -- всички членове на редицата са неотрицателни). От горното твърдение получаваме, че тя е сходяща. За да намерим стойността на границата $L$, разглеждаме:
+    \[
+    \begin{cases}
+    q, q^2, q^3, \dots, q^n, \dots \xrightarrow[n\to\infty]{} L \\
+    q, q, q, \dots, q, \dots \xrightarrow[n\to\infty]{} q
+    \end{cases}
+    \implies q^2, q^3, q^4, \dots, q^{n+1}, \dots \xrightarrow[n\to\infty]{} L \cdot q.
+    \]
+    Умножихме редиците и използвахме свойство 6. Но последната редица всъщност е геометричната прогресия, чийто първи член е задраскан. Използваме Свойство 1 и Следствие~\ref{cor:unique_limit} (единственост на границата), за да заключим, че $L = L \cdot q$, т.е. $L(q - 1) = 0$. Тъй като $q < 1$, получаваме $L = 0$.
+
+    \item $-1 < q \le 0$. Този случай можем да сведем до горния, като забележим, че
+    \[
+    |q^n - 0| = |q^n| = |q|^n \xrightarrow[n\to\infty]{} 0 \quad \text{и} \quad |q| \in [0, 1).
+    \]
+    Така установяваме, че за $|q| < 1$ е в сила $q^n \xrightarrow[n\to\infty]{} 0$.
+
+    \item $q = 1$. Ясно е, че тогава $q^n = 1$ за всяко $n \in \mathbb{N}$ и $q^n \xrightarrow[n\to\infty]{} 1$.
+
+    \item $q = -1$. Получаваме редицата $-1, 1, -1, 1, \dots$, която е разходяща.
+
+    \item $q > 1$. В този случай $q^n \xrightarrow[n\to\infty]{} +\infty$. Наистина, $\frac{1}{q^n} = \left(\frac{1}{q}\right)^n \xrightarrow[n\to\infty]{} 0$, тъй като $0 < \frac{1}{q} < 1$, и сведохме до първия случай, използвайки Твърдение~\ref{thm:infinite_limits_reciprocal}, (1).
+
+    \item $q < -1$. В този случай $q^n \xrightarrow[n\to\infty]{} \infty$. Можем да представим $q^n$ като $(-1)^n \cdot |q|^n$ и да вземем реципрочното:
+    \[
+    \frac{1}{q^n} = (-1)^n \cdot \left(\frac{1}{|q|}\right)^n \xrightarrow[n\to\infty]{} 0
+    \]
+    като произведение на ограничена редица с редица, клоняща към нула (Следствие~\ref{cor:null_times_bounded}). Сега използваме Твърдение~\ref{thm:infinite_limits_reciprocal}, (3).
+\end{itemize}
+
+\paragraph{Пример 3.4.}
+Разглеждаме за $|q| < 1$:
+\[
+a_n = 1 + q + q^2 + \dots + q^n = \sum_{i=0}^n q^i \implies a_n = \frac{1 - q^{n+1}}{1 - q} \xrightarrow[n\to\infty]{} \frac{1}{1 - q}.
+\]
+
+\paragraph{Пример 3.5.}
+Нека $a_n = n^m \cdot q^n$ за $m \in \mathbb{N}$ и $0 < q < 1$. Ще покажем, че $a_n \xrightarrow[n\to\infty]{} 0$.
+\[
+\frac{a_{n+1}}{a_n} = \frac{(n + 1)^m \cdot q^{n+1}}{n^m \cdot q^n} = q\left(1 + \frac{1}{n}\right)^m \xrightarrow[n\to\infty]{} q < 1.
+\]
+Да изберем $r = \frac{1 + q}{2}$. Така $0 < q < r < 1$ и $(0, r)$ е околност на $q$. Следователно съществува $n_0 \in \mathbb{N}$ такова, че:
+\[
+0 < \frac{a_{n+1}}{a_n} < r \quad \forall n \ge n_0 \implies
+\begin{cases}
+\frac{a_{n_0+1}}{a_{n_0}} < r \\
+\frac{a_{n_0+2}}{a_{n_0+1}} < r \\
+\dots \\
+\frac{a_{n_0+k}}{a_{n_0+(k-1)}} < r
+\end{cases}
+\]
+Ако сега умножим левите и десните страни на горните $k \in \mathbb{N}$ ($k$ е произволно естествено число) неравенства, с помощта на лемата за двамата полицаи и знанията ни за геометричната прогресия получаваме:
+\[
+\frac{a_{n_0+1}}{a_{n_0}} \cdot \frac{a_{n_0+2}}{a_{n_0+1}} \cdots \frac{a_{n_0+k}}{a_{n_0+(k-1)}} < r^k \implies \frac{a_{n_0+k}}{a_{n_0}} < r^k,
+\]
+откъдето:
+\[
+\underbrace{0}_{\xrightarrow[k\to\infty]{} 0} < a_{n_0+k} < \underbrace{a_{n_0} \cdot r^k}_{\xrightarrow[k\to\infty]{} 0} \implies a_{n_0+k} \xrightarrow[k\to\infty]{} 0.
+\]
+Остава да забележим, че последната редица е $\{a_n\}_{n=1}^{\infty}$, от която са задраскани първите $n_0$ члена.
+
+\section{Неперовото число $e$}
+
+Неперовото число е изключително важно в цялата математика. Мотивацията на това заявление ще се обогатява и развива в продължение на цялото ви следване във ФМИ.
+
+Ще въведем това число като границата на редицата с общ член $\left(1 + \frac{1}{n}\right)^n$. Тази редица или нейни варианти се появяват по естествен начин в много модели, например при сложна лихва или при изучаване на популационната динамика. Само като идея, сложната лихва (анатоцизъм) се изчислява при фиксиран лихвен процент $r$ и първоначална инвестиция $A$ при период на олихвяване $n$ по следния начин:
+\[
+A \implies A\left(1 + \frac{r}{n}\right)^n.
+\]
+Така например, ако $A(1 + r)$ е сумата при годишно олихвяване, получената сума при олихвяване всеки месец, като изчисляваме и лихва върху лихвите, ще бъде $A\left(1 + \frac{r}{12}\right)^{12}$. Нереалистично, но получената сума при олихвяване всеки ден, като изчисляваме и лихва върху лихвите, ще бъде $A\left(1 + \frac{r}{365}\right)^{365}$.
+
+Ще имаме нужда от следната формула, която е доказана по индукция от колегите:
+\[
+(a + b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}
+\]
+за произволни $n \in \mathbb{N}$ и $a, b \in \mathbb{R}$. Тази формула се нарича \textbf{Нютонов бином}. Да припомним дефиницията на биномните коефициенти:
+\[
+\binom{n}{0} = 1, \quad \binom{n}{k} = \frac{n(n - 1)\cdots(n - k + 1)}{k!}.
+\]
+Важно е да запомните именно тази дефиниция, защото нея ще използваме многократно и в случая, когато $n$ е реално число (не непременно естествено). В частния случай, когато $n$ е естествено, биномните коефициенти имат комбинаторна интерпретация (броят на всички възможни $k$-елементни подмножества на дадено $n$-елементно множество) и могат да се пресмятат чрез $\binom{n}{k} = \frac{n!}{k!(n-k)!}$.
+
+Сега да разгледаме редицата $\{a_n\}_{n=1}^{\infty} \subset \mathbb{R}$ с общ член $a_n = \left(1 + \frac{1}{n}\right)^n$. От биномната формула на Нютон имаме, че:
+\begin{align*}
+a_n &= \left(1 + \frac{1}{n}\right)^n = 1 + \binom{n}{1}\frac{1}{n} + \binom{n}{2}\frac{1}{n^2} + \dots + \binom{n}{n}\frac{1}{n^n} \\
+&= 1 + n \cdot \frac{1}{n} + \frac{n(n - 1)}{2!} \cdot \frac{1}{n^2} + \frac{n(n - 1)(n - 2)}{3!} \cdot \frac{1}{n^3} + \dots + \frac{n(n - 1)\cdots(n - n + 1)}{n!} \cdot \frac{1}{n^n} \\
+&= 1 + 1 + \frac{1}{2!}\left(1 - \frac{1}{n}\right) + \frac{1}{3!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right) + \dots + \frac{1}{n!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\cdots\left(1 - \frac{n - 1}{n}\right).
+\end{align*}
+Следователно можем да запишем и $a_{n+1}$ като:
+\begin{align*}
+a_{n+1} &= 1 + 1 + \frac{1}{2!}\left(1 - \frac{1}{n + 1}\right) + \frac{1}{3!}\left(1 - \frac{1}{n + 1}\right)\left(1 - \frac{2}{n + 1}\right) + \dots \\
+&\quad + \frac{1}{n!}\left(1 - \frac{1}{n + 1}\right)\left(1 - \frac{2}{n + 1}\right)\cdots\left(1 - \frac{n - 1}{n + 1}\right) \\
+&\quad + \underbrace{\frac{1}{(n + 1)!}\left(1 - \frac{1}{n + 1}\right)\left(1 - \frac{2}{n + 1}\right)\cdots\left(1 - \frac{n}{n + 1}\right)}_{> 0}.
+\end{align*}
+Да забележим, че за естествени $n$ имаме $1 - \frac{1}{n} < 1 - \frac{1}{n+1}$ и по-общото $1 - \frac{i}{n} < 1 - \frac{i}{n+1}$ за всяко $1 \le i \le n$. Следователно, всяко от първите $n + 1$ събираеми в развитието на $a_{n+1}$ е по-голямо от съответното събираемо в развитието на $a_n$, като в развитието на $a_{n+1}$ има едно положително събираемо в повече. Получихме, че $a_{n+1} > a_n$ за всички $n \in \mathbb{N}$ и следователно редицата е \textbf{строго растяща}.
+
+Да разгледаме редицата $\{b_n\}_{n=1}^{\infty} \subset \mathbb{R}$ с общ член $b_n = \sum_{i=0}^n \frac{1}{i!}$. Нейният общ член е по-голям от общия член на редицата $\{a_n\}_{n=1}^{\infty}$, защото всяка дроб от развитието на $a_n$ от вида $\frac{1}{i!}$ се умножава по коефициент, по-малък от единица. Следователно:
+\[
+\left.
+\begin{aligned}
+a_n &= \left(1 + \frac{1}{n}\right)^n \\
+b_n &= 1 + \frac{1}{1!} + \frac{1}{2!} + \dots + \frac{1}{n!}
+\end{aligned}
+\right\} \implies a_n < b_n \quad \forall n \in \mathbb{N}.
+\]
+Освен това е в сила $k! = 1 \cdot 2 \cdot 3 \cdots k \ge 1 \cdot 2 \cdot 2 \cdots 2 = 2^{k-1}$, откъдето:
+\begin{align*}
+b_n &= 1 + \frac{1}{1!} + \frac{1}{2!} + \dots + \frac{1}{n!} \le 1 + \frac{1}{1} + \frac{1}{2} + \frac{1}{2^2} + \dots + \frac{1}{2^{n-1}} \\
+&= 1 + \underbrace{1 + \frac{1}{2} + \left(\frac{1}{2}\right)^2 + \dots + \left(\frac{1}{2}\right)^{n-1}}_{\text{геометрична прогресия}} = 1 + \frac{1 - \left(\frac{1}{2}\right)^n}{1 - \frac{1}{2}} < 1 + \frac{1}{\frac{1}{2}} = 3.
+\end{align*}
+Доказахме, че редицата $\{a_n\}_{n=1}^{\infty}$ е строго растяща и ограничена отгоре, следователно от Твърдение~\ref{thm:monotone_convergence} следва, че тя има граница.
+
+\begin{definition}{Числото $e$ (Неперово число)}{euler_number}
+\[
+e = \lim_{n\to\infty} \left(1 + \frac{1}{n}\right)^n
+\]
+\end{definition}
+
+Редицата $\{a_n\}_{n=1}^{\infty}$ е важна, но от изчислителна гледна точка (когато искаме да пресмятаме числената стойност на неперовото число) не е много удобна, защото тя клони сравнително бавно към $e$. Много по-удобно в такива случаи е да се използва редицата $\{b_n\}_{n=1}^{\infty}$, защото тя също клони към неперовото число, при това доста по-бързо. Тъй като редицата $\{b_n\}_{n=1}^{\infty}$ е важна сама по себе си, ще докажем, че $e = \lim_{n\to\infty} b_n$.
+
+Да си припомним, че:
+\[
+a_n = 1 + 1 + \frac{1}{2!}\left(1 - \frac{1}{n}\right) + \frac{1}{3!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right) + \dots + \frac{1}{n!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\cdots\left(1 - \frac{n - 1}{n}\right).
+\]
+Да фиксираме две произволни естествени числа $m$ и $n$ с $m < n$. Тогава от горното развитие можем да изпуснем $n - m$ от последните членове и да получим неравенството:
+\[
+a_n > 1 + 1 + \frac{1}{2!}\left(1 - \frac{1}{n}\right) + \frac{1}{3!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right) + \dots + \frac{1}{m!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\cdots\left(1 - \frac{m - 1}{n}\right).
+\]
+Тъй като в горното неравенство $n > m$ може да бъде произволно голямо, да фиксираме $m$ и да направим граничен преход по $n$. Тъй като събираемите отдясно са фиксиран брой (както и множителите в съответните произведения), границата при $n \to \infty$ на дясната част е $1 + \frac{1}{1!} + \frac{1}{2!} + \dots + \frac{1}{m!} = b_m$. Разбира се, границата на лявата част на неравенството е неперовото число. Следователно получихме, че $e \ge b_m$ за всяко $m \in \mathbb{N}$. Тогава имаме:
+\[
+a_n \le b_n \le e \quad \forall n \in \mathbb{N},
+\]
+и, прилагайки лемата за двамата полицаи, получаваме:
+\[
+e = \lim_{n\to\infty} b_n = \lim_{n\to\infty} \left(1 + \frac{1}{1!} + \frac{1}{2!} + \dots + \frac{1}{n!}\right).
+\]

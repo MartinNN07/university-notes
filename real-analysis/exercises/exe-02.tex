@@ -1,0 +1,350 @@
+% ==============================================================================
+% ДИС 1 - Упражнение: Функции, обратни и обратни тригонометрични функции
+% ==============================================================================
+
+\section{Упражнение - 13 октомври 2026 г.}
+\begin{problembox}{Задача 1}
+Нека $f: \mathbb{R} \to \mathbb{R}$ е строго растяща функция. Да се докаже, че $f$ е обратима (като изображение върху образа си $f(\mathbb{R})$) и че обратната функция $f^{-1}: f(\mathbb{R}) \to \mathbb{R}$ е също строго растяща.
+\end{problembox}
+
+\begin{solution}
+\textbf{1. Доказателство за инжективност (обратимост):}
+По условие $f$ е строго растяща, т.е.
+\[
+\forall x_1, x_2 \in \mathbb{R}, \quad x_1 < x_2 \implies f(x_1) < f(x_2).
+\]
+Нека $x_1, x_2 \in \mathbb{R}$ и $x_1 \neq x_2$. Без ограничение на общността (WLOG) нека $x_1 < x_2$.
+Тогава от строгата монотонност следва:
+\[
+f(x_1) < f(x_2) \implies f(x_1) \neq f(x_2).
+\]
+Следователно $f$ е инжекция, откъдето съществува обратната функция $f^{-1}: f(\mathbb{R}) \to \mathbb{R}$.
+
+\textbf{2. Строга монотонност на $f^{-1}$:}
+Нека $y_1, y_2 \in f(\mathbb{R})$. Тогава съществуват единствени $x_1, x_2 \in \mathbb{R}$, такива че $y_1 = f(x_1)$ и $y_2 = f(x_2)$ (т.е. $x_1 = f^{-1}(y_1)$ и $x_2 = f^{-1}(y_2)$).
+Нека $y_1 < y_2$, което означава $f(x_1) < f(x_2)$.
+Ако допуснем, че $x_1 \ge x_2$, то поради монотонността на $f$ бихме имали $f(x_1) \ge f(x_2)$, което е противоречие.
+Следователно:
+\[
+x_1 < x_2 \iff f^{-1}(y_1) < f^{-1}(y_2),
+\]
+което доказва, че $f^{-1}$ е строго растяща функция.
+\end{solution}
+
+
+\begin{problembox}{Задача 2}
+Да се пресметне стойността на израза:
+\[
+\arcsin\left(\sin \frac{2406\pi}{7}\right).
+\]
+\end{problembox}
+
+\begin{solution}
+Отделяме кратни на периода $2\pi$:
+\[
+\frac{2406}{7} = 343\frac{5}{7} = 344 - \frac{2}{7}.
+\]
+Следователно:
+\[
+\frac{2406\pi}{7} = 344\pi - \frac{2\pi}{7} = 2\pi \cdot 172 - \frac{2\pi}{7}.
+\]
+От периодичността на синуса:
+\[
+\sin\left(\frac{2406\pi}{7}\right) = \sin\left(-\frac{2\pi}{7}\right).
+\]
+Тъй като $-\frac{2\pi}{7} \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ (понеже $\frac{2}{7} < \frac{1}{2}$), по дефиниция на $\arcsin$ получаваме:
+\[
+\arcsin\left(\sin \frac{2406\pi}{7}\right) = \arcsin\left(\sin\left(-\frac{2\pi}{7}\right)\right) = -\frac{2\pi}{7}.
+\]
+\end{solution}
+
+\begin{problembox}{Задача 3}
+Да се докаже тъждеството:
+\[
+\cos(\arcsin x) = \sqrt{1-x^2}, \quad \text{за } |x| \le 1.
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \arcsin x$. По дефиниция:
+\[
+\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] \quad \text{и} \quad \sin\alpha = x.
+\]
+От основното тригонометрично тъждество $\sin^2\alpha + \cos^2\alpha = 1$:
+\[
+\cos^2\alpha = 1 - \sin^2\alpha = 1 - x^2.
+\]
+Тъй като $\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, то $\cos\alpha \ge 0$, откъдето:
+\[
+\cos\alpha = \sqrt{1-x^2} \implies \cos(\arcsin x) = \sqrt{1-x^2}.
+\]
+\end{solution}
+
+\begin{problembox}{Задача 4}
+Да се докаже тъждеството:
+\[
+\arccos(-x) = \pi - \arccos x, \quad \text{за } x \in [-1, 1].
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \arccos(-x)$. Тогава:
+\[
+\alpha \in [0, \pi] \quad \text{и} \quad \cos\alpha = -x.
+\]
+Използваме формулата за косинус от допълнителен ъгъл:
+\[
+-\cos(\pi - \alpha) = -x \iff \cos(\pi - \alpha) = x.
+\]
+Тъй като $\alpha \in [0, \pi]$, следва че $\pi - \alpha \in [0, \pi]$. Следователно по дефиниция:
+\[
+\pi - \alpha = \arccos x.
+\]
+Замествайки $\alpha$:
+\[
+\pi - \arccos(-x) = \arccos x \iff \arccos(-x) = \pi - \arccos x.
+\]
+\end{solution}
+
+% ------------------------------------------------------------------------------
+% Теоретични свойства на tg, cotg, arctg, arcctg
+% ------------------------------------------------------------------------------
+
+\subsection*{Основни свойства на тригонометричните и обратните тригонометрични функции}
+
+\textbf{Функция тангенс и аркустангенс:}
+\begin{itemize}
+    \item $\operatorname{tg}: \mathbb{R} \setminus \left\{\frac{\pi}{2} + k\pi : k \in \mathbb{Z}\right\} \to \mathbb{R}$
+    \item Нечетност: $\operatorname{tg}(-x) = -\operatorname{tg} x$
+    \item Периодичност: $\operatorname{tg}(x+\pi) = \operatorname{tg} x$
+    \item Биективно стеснение: $\operatorname{tg}: \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \to \mathbb{R}$
+    \item Обратна функция: $\operatorname{arctg}: \mathbb{R} \to \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$
+    \item Тъждества:
+    \[
+    \operatorname{tg}(\operatorname{arctg} x) = x, \quad \forall x \in \mathbb{R},
+    \]
+    \[
+    \operatorname{arctg}(\operatorname{tg} x) = x, \quad \forall x \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right).
+    \]
+\end{itemize}
+
+\textbf{Функция котангенс и аркускотангенс:}
+\begin{itemize}
+    \item $\operatorname{cotg}: \mathbb{R} \setminus \{k\pi : k \in \mathbb{Z}\} \to \mathbb{R}$
+    \item Нечетност: $\operatorname{cotg}(-x) = -\operatorname{cotg} x$
+    \item Периодичност: $\operatorname{cotg}(x+\pi) = \operatorname{cotg} x$
+    \item Биективно стеснение: $\operatorname{cotg}: (0, \pi) \to \mathbb{R}$
+    \item Обратна функция: $\operatorname{arcctg}: \mathbb{R} \to (0, \pi)$
+    \item Тъждества:
+    \[
+    \operatorname{cotg}(\operatorname{arcctg} x) = x, \quad \forall x \in \mathbb{R},
+    \]
+    \[
+    \operatorname{arcctg}(\operatorname{cotg} x) = x, \quad \forall x \in (0, \pi).
+    \]
+\end{itemize}
+
+\textbf{Важни тъждества:}
+\begin{enumerate}
+    \item $\operatorname{arctg}(-x) = -\operatorname{arctg} x, \quad \forall x \in \mathbb{R}$
+    \item $\operatorname{arcctg}(-x) = \pi - \operatorname{arcctg} x, \quad \forall x \in \mathbb{R}$
+    \item $\operatorname{arctg} x + \operatorname{arcctg} x = \frac{\pi}{2}, \quad \forall x \in \mathbb{R}$
+    \item $\operatorname{arctg} x + \operatorname{arctg}\left(\frac{1}{x}\right) = \begin{cases} \frac{\pi}{2}, & x > 0 \\ -\frac{\pi}{2}, & x < 0 \end{cases}$
+\end{enumerate}
+
+\begin{solution}[Доказателство на тъждество 4 за $x > 0$]
+Нека $x > 0$. Полагаме:
+\[
+\alpha = \operatorname{arctg} x \in \left(0, \frac{\pi}{2}\right) \implies \operatorname{tg}\alpha = x,
+\]
+\[
+\beta = \operatorname{arctg}\left(\frac{1}{x}\right) \in \left(0, \frac{\pi}{2}\right) \implies \operatorname{tg}\beta = \frac{1}{x}.
+\]
+Имаме:
+\[
+\operatorname{tg}\alpha \cdot \operatorname{tg}\beta = x \cdot \frac{1}{x} = 1 \implies \operatorname{tg}\alpha = \frac{1}{\operatorname{tg}\beta} = \operatorname{cotg}\beta = \operatorname{tg}\left(\frac{\pi}{2} - \beta\right).
+\]
+Тъй като $\beta \in \left(0, \frac{\pi}{2}\right)$, то $\frac{\pi}{2} - \beta \in \left(0, \frac{\pi}{2}\right)$. Тъй като функцията $\operatorname{tg}$ е инжективна в интервала $\left(0, \frac{\pi}{2}\right)$, следва:
+\[
+\alpha = \frac{\pi}{2} - \beta \iff \alpha + \beta = \frac{\pi}{2}.
+\]
+Случаят $x < 0$ се свежда до горния чрез нечетността на функцията $\operatorname{arctg}$ (за самостоятелна работа).
+\end{solution}
+
+% ------------------------------------------------------------------------------
+% Допълнителни задачи от упражнението
+% ------------------------------------------------------------------------------
+
+\begin{problembox}{Задача 5}
+Да се опрости изразът:
+\[
+\arccos x + \arccos\left(\frac{x}{2} + \frac{1}{2}\sqrt{3-3x^2}\right) \quad \text{за } x \in \left[\frac{1}{2}, 1\right].
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \arccos x$. Тъй като $x \in \left[\frac{1}{2}, 1\right]$, то:
+\[
+\alpha \in \left[0, \frac{\pi}{3}\right], \quad \cos\alpha = x, \quad \sin\alpha = \sqrt{1-x^2} \ge 0.
+\]
+Преобразуваме аргумента на втория аркускосинус:
+\begin{align*}
+\frac{x}{2} + \frac{1}{2}\sqrt{3(1-x^2)} &= \frac{1}{2}\cos\alpha + \frac{\sqrt{3}}{2}\sin\alpha \\
+&= \cos\frac{\pi}{3}\cos\alpha + \sin\frac{\pi}{3}\sin\alpha \\
+&= \cos\left(\frac{\pi}{3} - \alpha\right).
+\end{align*}
+Тъй като $\alpha \in \left[0, \frac{\pi}{3}\right]$, следва че:
+\[
+\frac{\pi}{3} - \alpha \in \left[0, \frac{\pi}{3}\right] \subset [0, \pi].
+\]
+Следователно:
+\[
+\arccos\left(\cos\left(\frac{\pi}{3} - \alpha\right)\right) = \frac{\pi}{3} - \alpha.
+\]
+Тогава за целия израз получаваме:
+\[
+\alpha + \left(\frac{\pi}{3} - \alpha\right) = \frac{\pi}{3}.
+\]
+\end{solution}
+
+\begin{problembox}{Задача 6}
+Да се докаже тъждеството:
+\[
+\arcsin\left(\frac{1}{2}\sqrt{2 - \sqrt{2-2x}}\right) = \frac{\pi}{8} + \frac{1}{4}\arcsin x \quad \text{за } |x| \le 1.
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \arcsin x \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, откъдето $\sin\alpha = x$.
+Разглеждаме подкоренния израз $A = 2 - 2x$:
+\[
+A = 2 - 2\sin\alpha = 2\left(1 - \cos\left(\frac{\pi}{2} - \alpha\right)\right) = 4\sin^2\left(\frac{\pi}{4} - \frac{\alpha}{2}\right).
+\]
+Тъй като $\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] \implies \frac{\alpha}{2} \in \left[-\frac{\pi}{4}, \frac{\pi}{4}\right] \implies \frac{\pi}{4} - \frac{\alpha}{2} \in \left[0, \frac{\pi}{2}\right]$, синусът е неотрицателен:
+\[
+\sqrt{A} = 2\sin\left(\frac{\pi}{4} - \frac{\alpha}{2}\right).
+\]
+Заместваме във външния израз:
+\begin{align*}
+\frac{1}{2}\sqrt{2 - \sqrt{A}} &= \frac{1}{2}\sqrt{2 - 2\sin\left(\frac{\pi}{4} - \frac{\alpha}{2}\right)} \\
+&= \frac{\sqrt{2}}{2}\sqrt{1 - \cos\left(\frac{\pi}{2} - \left(\frac{\pi}{4} - \frac{\alpha}{2}\right)\right)} \\
+&= \frac{\sqrt{2}}{2}\sqrt{1 - \cos\left(\frac{\pi}{4} + \frac{\alpha}{2}\right)} \\
+&= \frac{\sqrt{2}}{2}\sqrt{2\sin^2\left(\frac{\pi}{8} + \frac{\alpha}{4}\right)} \\
+&= \left|\sin\left(\frac{\pi}{8} + \frac{\alpha}{4}\right)\right|.
+\end{align*}
+Тъй като $\alpha \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] \implies \frac{\alpha}{4} \in \left[-\frac{\pi}{8}, \frac{\pi}{8}\right] \implies \frac{\pi}{8} + \frac{\alpha}{4} \in \left[0, \frac{\pi}{4}\right]$, модулът пада:
+\[
+\arcsin\left(\sin\left(\frac{\pi}{8} + \frac{\alpha}{4}\right)\right) = \frac{\pi}{8} + \frac{\alpha}{4} = \frac{\pi}{8} + \frac{1}{4}\arcsin x.
+\]
+\end{solution}
+
+\begin{problembox}{Задача 7}
+Да се докаже равенството:
+\[
+\arccos\left(\frac{x - \sqrt{1-x^2}}{\sqrt{2}}\right) = \frac{5\pi}{4} + \arcsin x \quad \text{за } x \in \left[-1, -\frac{\sqrt{2}}{2}\right].
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \arcsin x$. От $x \in \left[-1, -\frac{\sqrt{2}}{2}\right]$ следва:
+\[
+\alpha \in \left[-\frac{\pi}{2}, -\frac{\pi}{4}\right], \quad \sin\alpha = x, \quad \sqrt{1-x^2} = \cos\alpha \ge 0.
+\]
+Преобразуваме аргумента:
+\begin{align*}
+\frac{\sin\alpha - \cos\alpha}{\sqrt{2}} &= \sin\alpha\cos\frac{\pi}{4} - \cos\alpha\sin\frac{\pi}{4} \\
+&= -\left(\cos\alpha\cos\frac{\pi}{4} - \sin\alpha\sin\frac{\pi}{4}\right) \\
+&= -\cos\left(\alpha + \frac{\pi}{4}\right).
+\end{align*}
+Търсим $\arccos\left(-\cos\left(\alpha + \frac{\pi}{4}\right)\right)$. Използваме $\arccos(-u) = \pi - \arccos(u)$:
+\[
+\arccos\left(-\cos\left(\alpha + \frac{\pi}{4}\right)\right) = \pi - \arccos\left(\cos\left(\alpha + \frac{\pi}{4}\right)\right).
+\]
+Тъй като $\alpha \in \left[-\frac{\pi}{2}, -\frac{\pi}{4}\right] \implies \alpha + \frac{\pi}{4} \in \left[-\frac{\pi}{4}, 0\right]$, от четността на косинуса имаме $\cos\left(\alpha + \frac{\pi}{4}\right) = \cos\left(-\left(\alpha + \frac{\pi}{4}\right)\right)$, където $-\left(\alpha + \frac{\pi}{4}\right) \in \left[0, \frac{\pi}{4}\right] \subset [0, \pi]$.
+Следователно:
+\[
+\arccos\left(\cos\left(\alpha + \frac{\pi}{4}\right)\right) = -\left(\alpha + \frac{\pi}{4}\right).
+\]
+Получаваме:
+\[
+\pi - \left(-\left(\alpha + \frac{\pi}{4}\right)\right) = \pi + \alpha + \frac{\pi}{4} = \alpha + \frac{5\pi}{4} = \frac{5\pi}{4} + \arcsin x.
+\]
+\end{solution}
+
+\begin{problembox}{Задача 8}
+Да се докаже тъждеството:
+\[
+\cos(2\operatorname{arctg} x) = \frac{1-x^2}{1+x^2}, \quad \forall x \in \mathbb{R}.
+\]
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \operatorname{arctg} x \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \implies \operatorname{tg}\alpha = x$.
+Използваме тригонометричната зависимост:
+\[
+1 + \operatorname{tg}^2\alpha = \frac{1}{\cos^2\alpha} \iff \cos^2\alpha = \frac{1}{1+\operatorname{tg}^2\alpha}.
+\]
+Тогава:
+\[
+\cos 2\alpha = 2\cos^2\alpha - 1 = \frac{2}{1+\operatorname{tg}^2\alpha} - 1 = \frac{2 - (1+\operatorname{tg}^2\alpha)}{1+\operatorname{tg}^2\alpha} = \frac{1-\operatorname{tg}^2\alpha}{1+\operatorname{tg}^2\alpha} = \frac{1-x^2}{1+x^2}.
+\]
+\end{solution}
+
+\begin{problembox}{Задача 9}
+Да се намери стойността на $\arcsin(\sin\alpha)$ за всяко $\alpha \in \mathbb{R}$.
+\end{problembox}
+
+\begin{solution}
+Всеки реален ъгъл $\alpha$ може да бъде представен в интервал от вида:
+\[
+\alpha \in \left[(2k-1)\frac{\pi}{2}, (2k+1)\frac{\pi}{2}\right], \quad k \in \mathbb{Z}.
+\]
+Полагаме $\alpha_0 = \alpha - k\pi \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$.
+Разглеждаме два случая за четността на $k$:
+\begin{enumerate}
+    \item \textbf{Случай 1:} $k = 2n$ (четно):
+    \[
+    \sin\alpha = \sin(\alpha_0 + 2n\pi) = \sin\alpha_0.
+    \]
+    Тъй като $\alpha_0 \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, следва че:
+    \[
+    \arcsin(\sin\alpha) = \alpha_0 = \alpha - k\pi.
+    \]
+    \item \textbf{Случай 2:} $k = 2n+1$ (нечетно):
+    \[
+    \sin\alpha = \sin(\alpha_0 + (2n+1)\pi) = -\sin\alpha_0 = \sin(-\alpha_0).
+    \]
+    Тъй като $-\alpha_0 \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$, получаваме:
+    \[
+    \arcsin(\sin\alpha) = -\alpha_0 = k\pi - \alpha.
+    \]
+\end{enumerate}
+Обединената формула е:
+\[
+\arcsin(\sin\alpha) = (-1)^k(\alpha - k\pi), \quad \text{където } k = \left[\frac{\alpha + \frac{\pi}{2}}{\pi}\right].
+\]
+\end{solution}
+
+\begin{problembox}{Задача 10}
+Да се пресметне $\cos(\operatorname{arctg} 7)$ и $\sin(\operatorname{arctg} 7)$.
+\end{problembox}
+
+\begin{solution}
+Полагаме $\alpha = \operatorname{arctg} 7$. Понеже $7 > 0$, то $\alpha \in \left(0, \frac{\pi}{2}\right)$ и $\operatorname{tg}\alpha = 7$.
+Използваме връзката между тангенс и косинус:
+\[
+1 + \operatorname{tg}^2\alpha = \frac{1}{\cos^2\alpha} \implies \cos^2\alpha = \frac{1}{1+7^2} = \frac{1}{50}.
+\]
+Тъй като $\alpha \in \left(0, \frac{\pi}{2}\right)$, то $\cos\alpha > 0$:
+\[
+\cos\alpha = \frac{1}{\sqrt{50}} = \frac{\sqrt{50}}{50} = \frac{\sqrt{2}}{10}.
+\]
+За синуса:
+\[
+\sin^2\alpha = 1 - \cos^2\alpha = 1 - \frac{1}{50} = \frac{49}{50}.
+\]
+Тъй като $\sin\alpha > 0$:
+\[
+\sin\alpha = \frac{7}{\sqrt{50}} = \frac{7\sqrt{50}}{50} = \frac{7\sqrt{2}}{10}.
+\]
+\end{solution}

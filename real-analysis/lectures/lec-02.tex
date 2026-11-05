@@ -1,0 +1,307 @@
+\section*{Лекция 02 - 14 октомври}
+
+В първата лекция добихме интуитивна представа за реалните числа върху модела на безкрайните десетични дроби. По-важното е, че в множество, в което е зададена наредба, научихме какво значи точна горна граница (супремум) и точна долна граница (инфимум). Вече сме готови да формулираме основните свойства на реалните числа, които определят този обект еднозначно, и които са ни напълно достатъчни за по-нататъшната работа.
+
+\section{Непрекъснати наредени полета}
+
+\begin{definition}{Непрекъснато наредено поле}{continuous-ordered-field}
+Нека $R$ е множество, в което са дефинирани две бинарни операции (събиране и умножение), както и релацията $\preccurlyeq$:
+\[
+\oplus : R \times R \to R, \quad \otimes : R \times R \to R, \quad \preccurlyeq \;\subset R \times R \quad (a \preccurlyeq b \iff (a, b) \in\; \preccurlyeq)
+\]
+$(R, \oplus, \otimes, \preccurlyeq)$ се нарича \textbf{непрекъснато наредено поле}, ако са в сила:
+
+\subsection*{I. Аксиоми за събирането}
+\begin{enumerate}
+    \item \textbf{Асоциативност на събирането:} $(a \oplus b) \oplus c = a \oplus (b \oplus c) \quad \forall a, b, c \in R$.
+    \item \textbf{Неутрален елемент при събирането:} $\exists\, 0 \in R \quad \forall a \in R : a \oplus 0 = 0 \oplus a = a$.
+    \item \textbf{Противоположен елемент при събирането:} $\forall a \in R \;\; \exists\, (-a) \in R : a \oplus (-a) = (-a) \oplus a = 0$.
+    \item \textbf{Комутативност на събирането:} $a \oplus b = b \oplus a \quad \forall a, b \in R$.
+\end{enumerate}
+
+\subsection*{II. Аксиоми за умножението}
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item \textbf{Асоциативност на умножението:} $(a \otimes b) \otimes c = a \otimes (b \otimes c) \quad \forall a, b, c \in R$.
+    \item \textbf{Неутрален елемент при умножението:} $\exists\, e \in R \quad \forall a \in R : a \otimes e = e \otimes a = a$.
+    \item \textbf{Обратен елемент на умножението:} $\forall a \in R, a \neq 0 \;\; \exists\, a^{-1} \in R : a \otimes a^{-1} = a^{-1} \otimes a = e$.
+    \item \textbf{Комутативност на умножението:} $a \otimes b = b \otimes a \quad \forall a, b \in R$.
+    \item \textbf{Дистрибутивност на събирането и умножението:} \\
+    $(a \oplus b) \otimes c = (a \otimes c) \oplus (b \otimes c) \quad \forall a, b, c \in R$.
+\end{enumerate}
+
+\subsection*{III. Аксиоми, свързани с наредбата}
+\begin{enumerate}
+    \item $\forall a, b \in R : a \preccurlyeq b \text{ или } b \preccurlyeq a$.
+    \item $a \preccurlyeq a \quad \forall a \in R$.
+    \item $a \preccurlyeq b \text{ и } b \preccurlyeq a \implies a = b \quad \forall a, b \in R$.
+    \item $a \preccurlyeq b \text{ и } b \preccurlyeq c \implies a \preccurlyeq c \quad \forall a, b, c \in R$ (транзитивност).
+    \item $a \preccurlyeq b \implies a \oplus c \preccurlyeq b \oplus c \quad \forall a, b, c \in R$ (връзка със събиране).
+    \item $a \preccurlyeq b \implies a \otimes c \preccurlyeq b \otimes c$ за всички $c \succ 0$ и за всички $a, b \in R$ (връзка с умножение).
+\end{enumerate}
+
+\subsection*{IV. Принцип за непрекъснатост}
+Всяко непразно ограничено отгоре подмножество на $R$ притежава супремум в $R$.
+\end{definition}
+
+\noindent\textbf{Забележка.} В курса по алгебра сте разбрали, че множество, в което са дефинирани две бинарни операции, за които са в сила аксиомите от първите две групи, се нарича \textbf{поле}. Директна сметка (или от курса по алгебра) показва, че неутралният елемент спрямо събирането (нулата) и неутралният елемент спрямо умножението (единицата) са единствени. Би трябвало отново от алгебрата да ви е познат следният пример: множеството $\mathbb{Z}_p = \{0, 1, 2, \dots, p - 1\}$ от остатъците при деление на дадено просто число $p \in \mathbb{N}$ е поле спрямо операциите събиране и умножение по модул $p$:
+\begin{align*}
+    a \oplus b &\equiv a + b \pmod p \\
+    a \otimes b &\equiv a \times b \pmod p
+\end{align*}
+Проверете сами за множествата $\mathbb{N}, \mathbb{Z}, \mathbb{Q}$, снабдени със стандартните операции събиране и умножение, както и със стандартната наредба, кои от аксиомите по-горе са в сила.
+
+Сега ще формулираме две важни теореми, чието строго доказателство излиза извън рамките на този курс.
+
+\begin{theorem}{Съществуване на непрекъснато наредено поле}{existence-ordered-field}
+Съществува непрекъснато наредено поле.
+\end{theorem}
+
+Да се докаже тази теорема означава да се построи поне един конкретен модел на реалните числа. Такива има много в литературата. Ние коментирахме модела с безкрайните десетични дроби, но не проверихме строго всички аксиоми. В учебника на Джаков, Леви, Малеев и Троянски е използван моделът със сечения на Дедекинд. Най-популярният и естествен модел е с попълването на рационалните числа.
+
+\begin{theorem}{Единственост на непрекъснатото наредено поле}{uniqueness-ordered-field}
+Непрекъснатото наредено поле е единствено в следния смисъл: Нека са дадени две наредени полета $(R_1, \oplus_1, \otimes_1, \le_1)$ и $(R_2, \oplus_2, \otimes_2, \le_2)$. Тогава съществува биекция $\phi : R_1 \to R_2$, за която са в сила следните свойства:
+\begin{enumerate}
+    \item $\phi(a \oplus_1 b) = \phi(a) \oplus_2 \phi(b) \quad \forall a, b \in R_1$
+    \item $\phi(a \otimes_1 b) = \phi(a) \otimes_2 \phi(b) \quad \forall a, b \in R_1$
+    \item $a \le_1 b \iff \phi(a) \le_2 \phi(b) \quad \forall a, b \in R_1$
+\end{enumerate}
+\end{theorem}
+
+В учебника на Джаков, Леви, Малеев и Троянски е добавена още една аксиома към списъка с аксиомите, определящи непрекъснато наредено поле, и е отбелязано, че тя се получава от останалите. Ето защо:
+
+\begin{theorem}{Аксиома на Архимед}{archimedean-property}
+Ако $(R, \oplus, \otimes, \le)$ е непрекъснато наредено поле с неутрален елемент относно умножението $e$, то множеството $\{e, e + e, e + e + e, \dots\}$ не е ограничено отгоре.
+\end{theorem}
+
+\begin{proof}
+Допускаме, че множеството $A = \{e, e + e, \dots, ne, \dots\}$ е ограничено отгоре (тук с $ne$ сме означили единичния елемент, събран със себе си $n$ пъти). Съгласно принципа за непрекъснатост (IV) съществува $\sup A \in R$. Тогава $\sup A - e < \sup A$ (използвахме, че $e > 0$ -- проверете!). От дефиницията за супремум оттук получаваме, че съществува $n \in \mathbb{N}$ с $ne > \sup A - e$. Следователно $ne + e > \sup A$. Тъй като $ne + e = (n + 1)e \in A$, достигнахме до противоречие.
+\end{proof}
+
+\section{Изброими множества}
+
+В допълнение към вече фиксираните означения -- тези на естествените ($\mathbb{N}$), на целите ($\mathbb{Z}$), на рационалните ($\mathbb{Q}$) и на реалните числа ($\mathbb{R}$), ще използваме $\mathbb{J}$ за означение на множеството на ирационалните числа, тоест $\mathbb{J} := \mathbb{R} \setminus \mathbb{Q}$. Засега сме сигурни, че това множество не е празно (в първата лекция доказахме, че числото $\sqrt{2} \in \mathbb{R}$ не е рационално). Постоянно ще използваме, че във всеки отворен интервал от реални числа има както рационални, така и ирационални числа. Следващото твърдение е доказано в учебника на Джаков, Леви, Малеев и Троянски от аксиомите. Ние (за да не повтаряме разсъждение, подобно на доказателството на аксиомата на Архимед) ще го направим в модела на реалните числа като безкрайни десетични дроби.
+
+\begin{lemma}{Гъстота на рационалните числа}{density-of-rationals}
+Ако $a, b \in \mathbb{R}$ са произволни с $a < b$, то интервалът $(a, b)$ съдържа поне едно рационално число.
+\end{lemma}
+
+\begin{proof}
+Без ограничение на общността можем да предположим, че $a = a_0.a_1a_2\dots$ и $b = b_0.b_1b_2\dots$ са неотрицателни числа (иначе можем да вземем $(-b, -a)$ или $(-a, 0)$, или $(0, b)$). Пак без ограничение на общността можем да предположим, че десетичното представяне на $a$ не завършва с $9$ в период (иначе вземаме десетичното представяне на $a$ като крайна десетична дроб). Сега $a < b$ означава, че съществува $n \in \mathbb{N} \cup \{0\}$ такова, че $a_i = b_i$ за всички $i \in \{0, 1, 2, \dots, n - 1\}$ и $a_n < b_n$. Нека $j \ge n + 1$ е такова, че $a_j \neq 9$. Тогава:
+\[
+r := a_0.a_1a_2\dots a_{j-1}(a_j + 1)
+\]
+е крайна десетична дроб (следователно рационално число), която е строго по-голяма от $a$ и строго по-малка от $b$.
+\end{proof}
+
+Бихме могли да докажем, че във всеки отворен интервал $(a, b)$ има поне едно ирационално число, с транслация на $\sqrt{2}$ с рационално число. Искаме обаче по-добре да бъде осъзнат фактът, че в някакъв смисъл ирационалните числа са много повече от рационалните.
+
+\begin{definition}{Кардиналност на множество}{cardinality}
+Нека $M$ е множество. Казваме, че $M$ е \textbf{крайно} и има $n$ елемента (означаваме $|M| = n$), когато съществува биекция $\phi : \{1, 2, \dots, n\} \to M$. Можем да мислим, че чрез изображението $\phi$ сме номерирали елементите на $M$ с естествените числа $1, 2, \dots, n$. Така $M = \{\phi(1), \phi(2), \dots, \phi(n)\}$.
+\end{definition}
+
+Тази идея се продължава и за безкрайните множества. Представата ни е, че две множества „имат равен брой елементи“ (математическият термин е \emph{имат еднаква кардиналност или мощност}), ако съществува биекция между тях. Особено често се работи с „най-малките“ от всички безкрайни множества:
+
+\begin{definition}{Изброимо множество}{countable-set}
+Множество $M$ е \textbf{изброимо}, ако съществува биекция $\phi : \mathbb{N} \to M$. Аналогично на горния запис, $M = \{\phi(1), \phi(2), \dots, \phi(n), \dots\}$.
+\end{definition}
+
+Да разгледаме някои свойства на изброимите множества:
+\begin{enumerate}
+    \item Ако $M$ е изброимо и $N \subset M$, то $N$ е крайно или изброимо.
+    \item Ако $M_n$ е изброимо за всяко $n \in \mathbb{N}$, то $M = \bigcup_{n \in \mathbb{N}} M_n$ е изброимо. Наистина,
+    \[
+    M = \bigcup_{n \in \mathbb{N}} M_n = \{x : \exists\, n \in \mathbb{N}, x \in M_n\} \implies
+    \begin{cases}
+    M_1 = \{a_1^1, a_2^1, a_3^1, \dots\} \\
+    M_2 = \{a_1^2, a_2^2, a_3^2, \dots\} \\
+    \dots \\
+    M_n = \{a_1^n, a_2^n, a_3^n, \dots\} \\
+    \dots
+    \end{cases}
+    \]
+    и можем да номерираме елементите на получената безкрайна (надясно и надолу) матрица, обхождайки я например по квадрати.
+    \item $\mathbb{Z} = \underbrace{\{\dots, -2, -1\}}_{\text{изброимо}} \cup \{0\} \cup \underbrace{\{1, 2, \dots\}}_{\text{изброимо}} \implies \mathbb{Z}$ е изброимо.
+    \item $\mathbb{Q} = \left\{\frac{m}{n} : m \in \mathbb{Z}, n \in \mathbb{N}\right\} = \bigcup_{n \in \mathbb{N}} \underbrace{\left\{\frac{m}{n} : m \in \mathbb{Z}\right\}}_{\text{изброимо}} \implies \mathbb{Q}$ е изброимо.
+    \item $\mathbb{J}$ не е изброимо.
+\end{enumerate}
+
+\begin{proof}
+Нека $A = \{0.a_1a_2a_3\dots : a_i \in \{0, 1\}, i \in \mathbb{N}\} \subset [0, 1)$. Достатъчно е да докажем, че $A$ не е изброимо. Наистина, $A \subset \mathbb{R} = \mathbb{Q} \cup \mathbb{J}$. Ако $\mathbb{J}$ беше изброимо, от горните свойства се получава, че $A$ също трябва да бъде изброимо. Забележете, че като се ограничихме с безкрайни десетични дроби само от нули и единици, два елемента на $A$ са равни точно когато съвпадат десетичните им представяния -- изчезна проблемът с $9$ в период.
+
+И тъй, нека допуснем противното, тоест $A$ е изброимо. Следователно съществува биекция $\phi : \mathbb{N} \to A$, която номерира елементите на $A$:
+\[
+A \ni 
+\begin{cases}
+\phi(1) := a^1 = 0.a_1^1 a_2^1 a_3^1 \dots \\
+\phi(2) := a^2 = 0.a_1^2 a_2^2 a_3^2 \dots \\
+\dots \\
+\phi(n) := a^n = 0.a_1^n a_2^n a_3^n \dots \\
+\dots
+\end{cases}
+\]
+Дефинираме:
+\[
+\overline{a_j^j} = 
+\begin{cases}
+0, & \text{ако } a_j^j = 1 \\
+1, & \text{ако } a_j^j = 0
+\end{cases}
+\]
+Строим безкрайната дроб $\overline{a} = 0.\overline{a_1^1}\overline{a_2^2}\overline{a_3^3}\dots \in A$.
+
+Остава да забележим, че $\overline{a} \neq a^n$ за всяко $n \in \mathbb{N}$, защото $\overline{a_n^n} \neq a_n^n$. (Представяме си, че елементите на $A$ са наредени както по-горе. Тръгваме по диагонал от горе-вляво към долу-вдясно, като на всяка стъпка инвертираме, т.е. изтриваме $a_i^i$ и записваме $\overline{a_i^i}$. Методът се нарича \textbf{канторов диагонален процес}.) Така се получава елемент $\overline{a}$ на $A$ -- лесно се вижда, че той е от подходящия вид, но е различен от всички останали елементи на $A$. Тъй като ние допуснахме, че в редицата са всички елементи на $A$, то достигнахме до противоречие.
+\end{proof}
+
+\chapter{Редици от реални числа}
+
+\begin{definition}{Редица}{sequence}
+Всяко изображение $a : \mathbb{N} \to \mathbb{R}$ се нарича \textbf{редица от реални числа}. Вместо $a(1), a(2), \dots, a(n), \dots$ често използваме записа $a_1, a_2, a_3, \dots, a_n, \dots$
+\end{definition}
+
+При изучаването на редици понякога е удобно да се използват понятията от следващата подсекция.
+
+\section{Кофинитност на множества}
+
+\begin{definition}{Кофинитно множество}{cofinite-set}
+Едно множество $A \subset \mathbb{N}$ от естествени числа се нарича \textbf{кофинитно}, ако $\mathbb{N} \setminus A$ е крайно или празно.
+\end{definition}
+
+\noindent\textbf{Пример 3.3.}
+\begin{itemize}
+    \item $\{n \in \mathbb{N} : 5n > 516\}$ -- кофинитно
+    \item $\{n \in \mathbb{N} : n = 2p, p \in \mathbb{N}\}$ -- не е кофинитно
+    \item $\{n \in \mathbb{N} : 7n^2 - 3n - 100 > 0\}$ -- кофинитно
+\end{itemize}
+
+Да разгледаме някои свойства на кофинитните множества:
+\begin{enumerate}
+    \item Ако за множества $A, B$ е изпълнено, че $\mathbb{N} \supset B \supset A$ и $A$ е кофинитно, то и $B$ е кофинитно.
+    \item Ако $A_1, A_2, A_3, \dots, A_k$ са кофинитни, то $\bigcap_{i=1}^k A_i$ е кофинитно (защото крайно обединение на крайни множества е крайно):
+    \[
+    \mathbb{N} \setminus \left(\bigcap_{i=1}^k A_i\right) = \underbrace{\bigcup_{i=1}^k (\mathbb{N} \setminus A_i)}_{\text{крайно}}.
+    \]
+    \item Множеството $A \subset \mathbb{N}$ е кофинитно точно тогава, когато $\exists\, n_0 \in \mathbb{N} \;\; \forall n \ge n_0 : n \in A$. \\
+    Наистина, ако $A$ е кофинитно, можем да положим $n_0 := \max(\mathbb{N} \setminus A) + 1$ и тогава $n \in A$ за всички $n \ge n_0$. Обратно, ако условието е в сила, разликата $\mathbb{N} \setminus A \subset \{1, 2, \dots, n_0 - 1\}$ е крайна.
+\end{enumerate}
+
+Например от (2) сега е очевидно, че $\{n \in \mathbb{N} : 1 - \frac{1}{n} > \frac{9}{10}, 7n^2 - 3n - 100 > 0\}$ е кофинитно.
+
+Ако едно свойство е изпълнено за всяко $n$ от някакво кофинитно множество, ще казваме, че \emph{„свойството е изпълнено за всяко $n$ от някъде нататък“} или \emph{„свойството е изпълнено за почти всички $n$“}.
+
+\section{Сходящи редици от реални числа}
+
+\begin{definition}{Околност на точка}{neighborhood}
+Нека $a \in \mathbb{R}$ и $U \subset \mathbb{R}$. Казваме, че $U$ е \textbf{околност на точката} $a$, ако съществува $\varepsilon > 0$ такова, че $(a - \varepsilon, a + \varepsilon) \subset U$.
+\end{definition}
+
+Следващата дефиниция е основна за този курс:
+
+\begin{definition}{Граница на редица и сходяща редица}{limit-of-sequence}
+Казваме, че редицата $\{a_n\}_{n=1}^\infty \subset \mathbb{R}$ има \textbf{граница} $a \in \mathbb{R}$, ако за всяка околност $U$ на $a$ множеството $\{n \in \mathbb{N} : a_n \in U\}$ е кофинитно. С други думи, всяка околност на $a$ съдържа почти всички членове на редицата. Означаваме:
+\[
+a_n \xrightarrow[n\to\infty]{} a \quad \text{или} \quad \lim_{n\to\infty} a_n = a.
+\]
+Ако за $\{a_n\}_{n=1}^\infty \subset \mathbb{R}$ съществува $a \in \mathbb{R}$ с $\lim_{n\to\infty} a_n = a$, казваме, че $\{a_n\}_{n=1}^\infty$ е \textbf{сходяща редица}.
+\end{definition}
+
+Можем да преформулираме горната дефиниция по много начини:
+\begin{align*}
+a_n \xrightarrow[n\to\infty]{} a &\iff \forall U \text{ -- околност за } a : \{n \in \mathbb{N} : a_n \in U\} \text{ е кофинитно.} \\
+a_n \xrightarrow[n\to\infty]{} a &\iff \forall U \text{ -- околност за } a : \{n \in \mathbb{N} : a_n \notin U\} \text{ е крайно.} \\
+a_n \xrightarrow[n\to\infty]{} a &\iff \forall \varepsilon > 0 : \{n \in \mathbb{N} : a_n \in (a - \varepsilon, a + \varepsilon)\} \text{ е кофинитно.} \\
+a_n \xrightarrow[n\to\infty]{} a &\iff \forall \varepsilon > 0 \;\; \exists\, n_0 \in \mathbb{N} \;\; \forall n \ge n_0 : a_n \in (a - \varepsilon, a + \varepsilon). \\
+a_n \xrightarrow[n\to\infty]{} a &\iff \forall \varepsilon > 0 \;\; \exists\, n_0 \in \mathbb{N} \;\; \forall n \ge n_0 : |a_n - a| < \varepsilon.
+\end{align*}
+
+\textbf{Разходяща редица} се нарича редица, която не е сходяща. Логическото отрицание дава:
+\begin{align*}
+\neg (\exists\, a \in \mathbb{R} \;\; \forall \varepsilon > 0 \;\; \exists\, n_0 \in \mathbb{N} \;\; \forall n \ge n_0 : |a_n - a| < \varepsilon) &\equiv \\
+\equiv \forall a \in \mathbb{R} \;\; \exists\, \varepsilon > 0 \;\; \forall n_0 \in \mathbb{N} \;\; \exists\, n \ge n_0 : |a_n - a| \ge \varepsilon
+\end{align*}
+
+\noindent\textbf{Упражнение.} Да се направят логическите отрицания на еквивалентните дефиниции.
+
+\noindent\textbf{Пример 3.6.}
+\begin{enumerate}
+    \item $\sqrt{2}$ може да се приближи с произволна точност -- $1;\; 1.4;\; 1.41$ и т.н. В рамките на настоящата терминология $\sqrt{2} = 1.b_1b_2b_3\dots b_n\dots$ и следователно:
+    \[
+    \sqrt{2} = \lim_{n\to\infty} (1.b_1b_2b_3\dots b_n).
+    \]
+    По-точно, за всяко $\varepsilon > 0$ съществува $n_0 \in \mathbb{N}$ такова, че за всяко $n \ge n_0$ имаме:
+    \[
+    |1.b_1b_2b_3\dots b_n - \sqrt{2}| = 0.\underbrace{000\dots 0}_{n \text{ на брой}}b_{n+1}b_{n+2}\dots \le 10^{-n} < \varepsilon.
+    \]
+    \item Важно е да отбележим, че:
+    \[
+    a_n \xrightarrow[n\to\infty]{} a \iff |a_n - a| \xrightarrow[n\to\infty]{} 0.
+    \]
+    \item $\frac{1}{n} \xrightarrow[n\to\infty]{} 0$. \\
+    Да вземем произволно $\varepsilon > 0$. Ще покажем, че $\left|\frac{1}{n} - 0\right| < \varepsilon$ е в сила от някъде нататък. Неравенството е еквивалентно на $\frac{1}{n} < \varepsilon$ или $\frac{1}{\varepsilon} < n$. Избираме $n_0 = \lfloor\frac{1}{\varepsilon}\rfloor + 1$. Тогава:
+    \[
+    \forall n \ge n_0 : \frac{1}{n} \le \frac{1}{n_0} < \varepsilon.
+    \]
+    \item Пример за разходяща редица: $0, 1, 0, 1, \dots, 0, 1, 0, \dots$
+\end{enumerate}
+
+\section{Основни свойства на сходящите редици от реални числа}
+
+\begin{enumerate}
+    \item Прибавянето или задраскването на краен брой членове на редицата не влияе на сходимостта (и на границата).
+\end{enumerate}
+
+\begin{theorem}{Ограниченост на сходящите редици}{convergent-bounded}
+Сходящите редици са ограничени, т.е. ако редицата $\{a_n\}_{n=1}^\infty$ е сходяща, то множеството $\{a_n : n \in \mathbb{N}\}$ е ограничено.
+\end{theorem}
+
+\begin{proof}
+Нека $a_n \xrightarrow[n\to\infty]{} a$. Тогава множеството $\{n \in \mathbb{N} : a_n \in (a - \varepsilon, a + \varepsilon)\}$ е кофинитно (за фиксирано $\varepsilon > 0$). Нека $a_n \in (a - \varepsilon, a + \varepsilon)$ за всички $n \ge n_0$. Следователно $\{a_n : n \in \mathbb{N}\} \subset [m, M]$, където:
+\begin{align*}
+M &= \max \{a_1, a_2, \dots, a_{n_0-1}, a + \varepsilon\} \\
+m &= \min \{a_1, a_2, \dots, a_{n_0-1}, a - \varepsilon\}
+\end{align*}
+\end{proof}
+
+\begin{theorem}{Запазване на неравенства}{inequalities-preservation}
+Нека $a_n \xrightarrow[n\to\infty]{} a$, $b_n \xrightarrow[n\to\infty]{} b$ и $a_n \le b_n \quad \forall n \in \mathbb{N}$. Тогава $a \le b$.
+\end{theorem}
+
+\begin{proof}
+Допускаме, че $b < a$. Разглеждаме $U = \left(-\infty, \frac{a+b}{2}\right)$ -- околност на $b$, и $V = \left(\frac{a+b}{2}, +\infty\right)$ -- околност на $a$. Тогава множеството:
+\[
+\{n \in \mathbb{N} : a_n \in V\} \cap \{n \in \mathbb{N} : b_n \in U\}
+\]
+е кофинитно като сечение на две кофинитни множества. Ако $n_0$ принадлежи на това сечение, имаме $a_{n_0} \in V$ и $b_{n_0} \in U$. Тогава $b_{n_0} < a_{n_0}$, защото $b_{n_0} < \frac{a+b}{2} < a_{n_0}$. Това е противоречие с $a_n \le b_n \quad \forall n \in \mathbb{N}$.
+\end{proof}
+
+\begin{corollary}{Единственост на границата}{unique-limit}
+Ако една редица е сходяща, то нейната граница е единствена.
+\end{corollary}
+
+\begin{proof}
+Наистина, да допуснем, че $a_n \xrightarrow[n\to\infty]{} a$ и $a_n \xrightarrow[n\to\infty]{} b$. Тогава, прилагайки два пъти горното твърдение, получаваме $a \le b$ и $a \ge b$, следователно $a = b$.
+\end{proof}
+
+\begin{lemma}{Лема за двамата полицаи}{squeeze-theorem}
+Нека $a_n \le c_n \le b_n \quad \forall n \in \mathbb{N}$. Ако $a_n \xrightarrow[n\to\infty]{} a$ и $b_n \xrightarrow[n\to\infty]{} a$, то $\{c_n\}_{n=1}^\infty$ е сходяща и $c_n \xrightarrow[n\to\infty]{} a$.
+\end{lemma}
+
+\begin{proof}
+Нека $\varepsilon > 0$ е произволно. Тогава:
+\[
+\begin{cases}
+\exists\, n_1 \in \mathbb{N} \;\; \forall n \ge n_1 : a_n \in (a - \varepsilon, a + \varepsilon) \\
+\exists\, n_2 \in \mathbb{N} \;\; \forall n \ge n_2 : b_n \in (a - \varepsilon, a + \varepsilon)
+\end{cases}
+\]
+Означаваме $n_0 = \max \{n_1, n_2\}$. Тогава:
+\[
+\forall n \ge n_0 : a - \varepsilon < a_n \le c_n \le b_n < a + \varepsilon \implies c_n \in (a - \varepsilon, a + \varepsilon) \quad \forall n \ge n_0.
+\]
+\end{proof}
+
+\section*{ЗАДАЧА ЗА ОБМИСЛЯНЕ ВКЪЩИ (до следващата седмица)}
+
+\begin{problembox}{Упражнение 3.7}
+Едно реално число $x$ се нарича \textbf{алгебрично}, ако съществува полином $P$ с цели коефициенти такъв, че $P(x) = 0$. Докажете, че алгебричните числа са изброимо много.
+\end{problembox}
